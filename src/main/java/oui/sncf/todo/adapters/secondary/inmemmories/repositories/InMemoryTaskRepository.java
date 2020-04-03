@@ -18,4 +18,9 @@ public class InMemoryTaskRepository implements TasksRepository {
     public Set<Task> all() {
         return tasks;
     }
+
+    @Override
+    public boolean remove(Task task) {
+        return tasks.remove(task);
+    }
 }

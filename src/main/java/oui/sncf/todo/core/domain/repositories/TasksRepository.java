@@ -7,4 +7,5 @@ import java.util.Set;
 public interface TasksRepository {
     boolean save(Task task);
     Set<Task> all();
+    boolean remove(Task task);
 }
