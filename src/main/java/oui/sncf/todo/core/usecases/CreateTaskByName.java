@@ -14,8 +14,7 @@ public class CreateTaskByName {
 
     public Task of(final String name)  {
         Task task = new Task(name);
-        boolean alreadyExist = !tasksRepository.save(task);
-        if(alreadyExist)
+        if (!tasksRepository.save(task))
             throw new TaskAlReadyExistException(task + " already exist");
         return task;
     }

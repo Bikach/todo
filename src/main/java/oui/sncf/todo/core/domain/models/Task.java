@@ -11,6 +11,13 @@ public class Task {
     }
 
     @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -23,10 +30,4 @@ public class Task {
         return Objects.hash(name);
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 }

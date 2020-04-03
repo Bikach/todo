@@ -13,9 +13,7 @@ public class RemoveTask {
     }
 
     public boolean by(final Task task) {
-        boolean doesNotExist = !tasksRepository.remove(task);
-        if(doesNotExist)
-            throw new TaskDoesNotExistException(task + " doesn't exist");
-        return true;
+        if(tasksRepository.remove(task)) return true;
+        throw new TaskDoesNotExistException(task + " doesn't exist");
     }
 }
