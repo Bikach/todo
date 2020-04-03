@@ -19,8 +19,7 @@ public class RemoveTaskTest {
     void should_removed_task(){
         Task task = new Task("ouigo");
         tasksRepository.save(task);
-        boolean removedTask = removeTask.by(task);
-        assertTrue(removedTask);
+        assertTrue(removeTask.by(task));
     }
     @Test
     void should_not_be_able_to_remove_a_task_that_does_not_exist(){
