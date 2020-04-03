@@ -5,14 +5,14 @@ import java.util.Objects;
 public class Task {
 
     private final String name;
-    private final TaskStatue statue;
+    private final TaskStatus statue;
 
     public Task(String name) {
         this.name = name;
-        this.statue = TaskStatue.IN_PROGRESS;
+        this.statue = TaskStatus.IN_PROGRESS;
     }
 
-    public Task(final String name, final TaskStatue statue){
+    public Task(final String name, final TaskStatus statue){
         this.name = name;
         this.statue = statue;
     }
@@ -21,7 +21,7 @@ public class Task {
         return name;
     }
 
-    public TaskStatue getStatue() {
+    public TaskStatus getStatue() {
         return statue;
     }
 

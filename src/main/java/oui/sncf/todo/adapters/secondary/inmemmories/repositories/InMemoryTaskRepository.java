@@ -15,12 +15,12 @@ public class InMemoryTaskRepository implements TasksRepository {
     }
 
     @Override
-    public Set<Task> all() {
-        return tasks;
+    public boolean remove(Task task) {
+        return tasks.remove(task);
     }
 
     @Override
-    public boolean remove(Task task) {
-        return tasks.remove(task);
+    public Set<Task> all() {
+        return tasks;
     }
 }

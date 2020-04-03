@@ -1,7 +1,7 @@
 package oui.sncf.todo.core.usecases;
 
 import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.models.TaskStatue;
+import oui.sncf.todo.core.domain.models.TaskStatus;
 import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
 
 public class changeTaskStatue {
@@ -12,7 +12,7 @@ public class changeTaskStatue {
         this.tasksRepository = tasksRepository;
     }
 
-    public Task of(Task task, TaskStatue newStatue){
+    public Task of(Task task, TaskStatus newStatue){
         Task updatedTask = new Task(task.getName(), newStatue);
         tasksRepository.save(updatedTask);
         return updatedTask;
