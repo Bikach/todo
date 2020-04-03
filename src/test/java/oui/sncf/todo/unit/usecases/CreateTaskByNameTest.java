@@ -3,7 +3,7 @@ package oui.sncf.todo.unit.usecases;
 import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.secondary.inmemmories.repositories.InMemoryTaskRepository;
 import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
 import oui.sncf.todo.core.domain.models.exceptions.TaskAlReadyExistException;
 import oui.sncf.todo.core.usecases.CreateTaskByName;
 

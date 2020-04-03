@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.secondary.inmemmories.repositories.InMemoryTaskRepository;
 import oui.sncf.todo.core.domain.models.Task;
 import oui.sncf.todo.core.domain.models.exceptions.TaskDoesNotExistException;
-import oui.sncf.todo.core.domain.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
 import oui.sncf.todo.core.usecases.RemoveTask;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

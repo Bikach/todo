@@ -1,4 +1,4 @@
-package oui.sncf.todo.core.domain.repositories;
+package oui.sncf.todo.core.domain.port.repositories;
 
 import oui.sncf.todo.core.domain.models.Task;
 

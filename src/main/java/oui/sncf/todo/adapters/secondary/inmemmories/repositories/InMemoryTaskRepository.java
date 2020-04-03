@@ -1,7 +1,7 @@
 package oui.sncf.todo.adapters.secondary.inmemmories.repositories;
 
 import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
 
 import java.util.*;
 

@@ -2,7 +2,7 @@ package oui.sncf.todo.core.usecases;
 
 import oui.sncf.todo.core.domain.models.Task;
 import oui.sncf.todo.core.domain.models.exceptions.TaskDoesNotExistException;
-import oui.sncf.todo.core.domain.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
 
 public class RemoveTask {
 
