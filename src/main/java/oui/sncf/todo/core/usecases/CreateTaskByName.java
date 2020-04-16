@@ -1,7 +1,7 @@
 package oui.sncf.todo.core.usecases;
 
 import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.models.exceptions.TaskAlReadyExistException;
+import oui.sncf.todo.core.usecases.exceptions.TaskAlReadyExistException;
 import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
 
 public class CreateTaskByName {

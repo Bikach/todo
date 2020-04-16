@@ -1,10 +1,13 @@
 FAIT :
 pouvoir créer une tache avec un nom
  - faire le controle lors de la creation par le nom
+Recuperer une tache par son nom
 pouvoir supprimer une tâche
 pouvoir filtrer les tâches non terminées ou terminées
 
 EN COURS :
+
+BLOQUE:
 pouvoir indiquer qu'une tâche est terminée
 pouvoir indiquer qu'une tâche terminée est non terminé
 

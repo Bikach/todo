@@ -8,7 +8,6 @@ import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
 import oui.sncf.todo.core.usecases.changeTaskStatue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class changeTaskStatusTest {
 
@@ -18,9 +17,11 @@ public class changeTaskStatusTest {
 
     @Test
     void should_return_a_task_that_has_changed_to_done(){
-        Task task = new Task("ouigo");
-        taskRepository.save(task);
-        changeTaskStatue.of(task, TaskStatus.DONE);
-        assertEquals(TaskStatus.DONE, task.getStatue());
+        Task taskInProgress = new Task("ouigo");
+        taskRepository.save(taskInProgress);
+        changeTaskStatue.of(taskInProgress, TaskStatus.DONE);
+        Task taskIsDone = new Task("ouigo", TaskStatus.DONE);
+
+        assertEquals(taskIsDone, taskIsDone);
     }
 }

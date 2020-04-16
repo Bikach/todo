@@ -1,4 +1,4 @@
-package oui.sncf.todo.core.domain.models.exceptions;
+package oui.sncf.todo.core.usecases.exceptions;
 
 public class TaskDoesNotExistException extends RuntimeException{
     public TaskDoesNotExistException(String message) {
