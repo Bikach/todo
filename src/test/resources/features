@@ -4,13 +4,13 @@ pouvoir créer une tache avec un nom
 Recuperer une tache par son nom
 pouvoir supprimer une tâche
 pouvoir filtrer les tâches non terminées ou terminées
-
-EN COURS :
-
-BLOQUE:
 pouvoir indiquer qu'une tâche est terminée
 pouvoir indiquer qu'une tâche terminée est non terminé
 
-A FAIRE :
+EN COURS :
 pouvoir ordonner les taches
+
+BLOQUE:
+
+A FAIRE :
 toute ihm possible : http, console

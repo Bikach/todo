@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RetrieveTaskBNameTest {
 
-
     TaskRepository taskRepository = new InMemoryTaskRepository();
     RetrieveTaskByName retrieveTaskByName = new RetrieveTaskByName(taskRepository);
 

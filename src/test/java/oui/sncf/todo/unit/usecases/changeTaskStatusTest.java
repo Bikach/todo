@@ -17,11 +17,25 @@ public class changeTaskStatusTest {
 
     @Test
     void should_return_a_task_that_has_changed_to_done(){
-        Task taskInProgress = new Task("ouigo");
-        taskRepository.save(taskInProgress);
-        changeTaskStatue.of(taskInProgress, TaskStatus.DONE);
-        Task taskIsDone = new Task("ouigo", TaskStatus.DONE);
+        Task task = new Task("ouigo");
+        taskRepository.save(task);
+        changeTaskStatue.of(task, TaskStatus.DONE);
 
-        assertEquals(taskIsDone, taskIsDone);
+        Task actualTask = taskRepository.get(task.getName()).get();
+        Task expectedTask = new Task("ouigo", TaskStatus.DONE);
+
+        assertEquals(expectedTask, actualTask);
+    }
+
+    @Test
+    void should_return_a_task_that_has_changed_to_in_progress(){
+        Task task = new Task("ouigo", TaskStatus.DONE);
+        taskRepository.save(task);
+        changeTaskStatue.of(task, TaskStatus.IN_PROGRESS);
+
+        Task actualTask = taskRepository.get(task.getName()).get();
+        Task expectedTask = new Task("ouigo", TaskStatus.IN_PROGRESS);
+
+        assertEquals(expectedTask, actualTask);
     }
 }
