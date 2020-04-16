@@ -2,10 +2,9 @@ package oui.sncf.todo.core.domain.port.repositories;
 
 import oui.sncf.todo.core.domain.models.Task;
 
-import java.util.Set;
 
-public interface TasksRepository {
+public interface TaskRepository {
     boolean save(Task task);
     boolean remove(Task task);
-    Set<Task> all();
+    boolean update(Task task);
 }

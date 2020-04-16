@@ -2,11 +2,11 @@ FAIT :
 pouvoir créer une tache avec un nom
  - faire le controle lors de la creation par le nom
 pouvoir supprimer une tâche
-pouvoir indiquer qu'une tâche est terminée
-pouvoir indiquer qu'une tâche terminée est non terminé
+pouvoir filtrer les tâches non terminées ou terminées
 
 EN COURS :
-pouvoir filtrer les tâches non terminées ou terminées
+pouvoir indiquer qu'une tâche est terminée
+pouvoir indiquer qu'une tâche terminée est non terminé
 
 A FAIRE :
 pouvoir ordonner les taches

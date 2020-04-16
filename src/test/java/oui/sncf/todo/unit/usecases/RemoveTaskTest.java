@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.secondary.inmemmories.repositories.InMemoryTaskRepository;
 import oui.sncf.todo.core.domain.models.Task;
 import oui.sncf.todo.core.domain.models.exceptions.TaskDoesNotExistException;
-import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
 import oui.sncf.todo.core.usecases.RemoveTask;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RemoveTaskTest {
 
-    private final TasksRepository tasksRepository = new InMemoryTaskRepository();;
-    private final RemoveTask removeTask = new RemoveTask(tasksRepository);
+    private final TaskRepository taskRepository = new InMemoryTaskRepository();;
+    private final RemoveTask removeTask = new RemoveTask(taskRepository);
 
     @Test
     void should_removed_task(){
         Task task = new Task("ouigo");
-        tasksRepository.save(task);
+        taskRepository.save(task);
         assertTrue(removeTask.by(task));
     }
     @Test

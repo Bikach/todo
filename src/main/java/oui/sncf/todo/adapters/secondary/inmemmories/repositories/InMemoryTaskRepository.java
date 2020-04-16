@@ -1,11 +1,11 @@
 package oui.sncf.todo.adapters.secondary.inmemmories.repositories;
 
 import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
 
 import java.util.*;
 
-public class InMemoryTaskRepository implements TasksRepository {
+public class InMemoryTaskRepository implements TaskRepository {
 
     private Set<Task> tasks = new LinkedHashSet<>();
 
@@ -20,7 +20,7 @@ public class InMemoryTaskRepository implements TasksRepository {
     }
 
     @Override
-    public Set<Task> all() {
-        return tasks;
+    public boolean update(Task task) {
+        return tasks.add(task);
     }
 }

@@ -2,27 +2,27 @@ package oui.sncf.todo.core.usecases;
 
 import oui.sncf.todo.core.domain.models.Task;
 import oui.sncf.todo.core.domain.models.TaskStatus;
-import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.loaders.TaskLoader;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class FilterTheTasks {
 
-    private final TasksRepository tasksRepository;
+    private final TaskLoader taskLoader;
 
-    public FilterTheTasks(TasksRepository tasksRepository) {
-        this.tasksRepository = tasksRepository;
+    public FilterTheTasks(TaskLoader taskLoader) {
+        this.taskLoader = taskLoader;
     }
 
     public Set<Task> byDoneStatus() {
-        return tasksRepository.all().stream()
+        return taskLoader.fetch().stream()
                 .filter(task -> task.getStatue().equals(TaskStatus.DONE))
                 .collect(Collectors.toSet());
     }
 
     public Set<Task> byInProgressStatus() {
-        return tasksRepository.all().stream()
+        return taskLoader.fetch().stream()
                 .filter(task -> task.getStatue().equals(TaskStatus.IN_PROGRESS))
                 .collect(Collectors.toSet());
     }

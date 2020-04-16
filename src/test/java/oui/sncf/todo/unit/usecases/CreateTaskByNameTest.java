@@ -3,7 +3,7 @@ package oui.sncf.todo.unit.usecases;
 import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.secondary.inmemmories.repositories.InMemoryTaskRepository;
 import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.port.repositories.TasksRepository;
+import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
 import oui.sncf.todo.core.domain.models.exceptions.TaskAlReadyExistException;
 import oui.sncf.todo.core.usecases.CreateTaskByName;
 
@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CreateTaskByNameTest {
 
-    private final TasksRepository tasksRepository = new InMemoryTaskRepository();;
-    private final CreateTaskByName createTaskByName = new CreateTaskByName(tasksRepository);
+    private final TaskRepository taskRepository = new InMemoryTaskRepository();;
+    private final CreateTaskByName createTaskByName = new CreateTaskByName(taskRepository);
 
     @Test
     void should_return_a_new_task_called_ouigo(){
