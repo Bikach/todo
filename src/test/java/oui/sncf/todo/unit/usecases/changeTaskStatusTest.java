@@ -21,7 +21,7 @@ public class changeTaskStatusTest {
         taskRepository.save(task);
         changeTaskStatue.of(task, TaskStatus.DONE);
 
-        Task actualTask = taskRepository.get(task.getName()).get();
+        Task actualTask = taskRepository.getByName(task.getName()).get();
         Task expectedTask = new Task("ouigo", TaskStatus.DONE);
 
         assertEquals(expectedTask, actualTask);
@@ -33,7 +33,7 @@ public class changeTaskStatusTest {
         taskRepository.save(task);
         changeTaskStatue.of(task, TaskStatus.IN_PROGRESS);
 
-        Task actualTask = taskRepository.get(task.getName()).get();
+        Task actualTask = taskRepository.getByName(task.getName()).get();
         Task expectedTask = new Task("ouigo", TaskStatus.IN_PROGRESS);
 
         assertEquals(expectedTask, actualTask);

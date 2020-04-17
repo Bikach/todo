@@ -8,15 +8,22 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class SortTasksByStatusInProgress {
+public class SortTasks {
 
     private final TaskLoader taskLoader;
 
-    public SortTasksByStatusInProgress(TaskLoader taskLoader) {
+    public SortTasks(TaskLoader taskLoader) {
         this.taskLoader = taskLoader;
     }
 
-    public Set<Task> sort() {
+    public Set<Task> ByStatusDone() {
+        return taskLoader.fetch()
+                .stream()
+                .sorted(Comparator.comparing(Task::getStatue).reversed())
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
+
+    public Set<Task> byStatusInProgress() {
         return taskLoader.fetch()
                 .stream()
                 .sorted(Comparator.comparing(Task::getStatue))

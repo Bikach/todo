@@ -13,7 +13,7 @@ public class RetrieveTaskByName {
     }
 
     public Task get(String nameTask){
-        return taskRepository.get(nameTask)
+        return taskRepository.getByName(nameTask)
                 .orElseThrow(
                         () -> new TaskDoesNotExistException(nameTask + " doesn't exist")
                 );

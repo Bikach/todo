@@ -25,7 +25,7 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Optional<Task> get(String name) {
+    public Optional<Task> getByName(String name) {
         return tasks.stream()
                 .filter(task -> task.getName().equals(name))
                 .findFirst();
