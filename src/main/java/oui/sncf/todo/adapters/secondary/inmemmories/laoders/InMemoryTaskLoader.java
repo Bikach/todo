@@ -23,8 +23,8 @@ public class InMemoryTaskLoader implements TaskLoader {
     private void initTasks(){
         tasks = new LinkedHashSet<>();
         tasks.add(new Task("task 1"));
-        tasks.add(new Task("task 2"));
         tasks.add(new Task("task 3", TaskStatus.DONE));
+        tasks.add(new Task("task 2"));
         tasks.add(new Task("task 4"));
         tasks.add(new Task("task 5", TaskStatus.DONE));
     }

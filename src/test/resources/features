@@ -8,9 +8,10 @@ pouvoir indiquer qu'une tâche est terminée
 pouvoir indiquer qu'une tâche terminée est non terminé
 
 EN COURS :
-pouvoir ordonner les taches
+pouvoir ordonner les taches par tache en cours
 
 BLOQUE:
+pouvoir ordonner les taches par tache in progress
 
 A FAIRE :
 toute ihm possible : http, console

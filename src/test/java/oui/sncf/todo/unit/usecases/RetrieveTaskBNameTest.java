@@ -5,7 +5,7 @@ import oui.sncf.todo.adapters.secondary.inmemmories.repositories.InMemoryTaskRep
 import oui.sncf.todo.core.domain.models.Task;
 import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
 import oui.sncf.todo.core.usecases.RetrieveTaskByName;
-import oui.sncf.todo.core.usecases.exceptions.TaskDoesNotExistException;
+import oui.sncf.todo.core.domain.models.TaskDoesNotExistException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
