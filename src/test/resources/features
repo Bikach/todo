@@ -6,12 +6,12 @@ pouvoir supprimer une tâche
 pouvoir filtrer les tâches non terminées ou terminées
 pouvoir indiquer qu'une tâche est terminée
 pouvoir indiquer qu'une tâche terminée est non terminé
+pouvoir ordonner les taches par tache en cours
+pouvoir ordonner les taches par tache in progress
 
 EN COURS :
-pouvoir ordonner les taches par tache en cours
 
 BLOQUE:
-pouvoir ordonner les taches par tache in progress
 
 A FAIRE :
 toute ihm possible : http, console
