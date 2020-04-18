@@ -1,7 +1,7 @@
 package oui.sncf.todo.unit.usecases;
 
 import org.junit.jupiter.api.Test;
-import oui.sncf.todo.adapters.secondary.inmemmories.laoders.InMemoryTaskLoader;
+import oui.sncf.todo.adapters.secondary.inmemmories.InMemoryTaskLoader;
 import oui.sncf.todo.core.domain.models.Task;
 import oui.sncf.todo.core.domain.models.TaskStatus;
 import oui.sncf.todo.core.domain.port.loaders.TaskLoader;

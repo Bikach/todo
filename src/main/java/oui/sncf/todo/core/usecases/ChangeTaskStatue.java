@@ -4,11 +4,11 @@ import oui.sncf.todo.core.domain.models.Task;
 import oui.sncf.todo.core.domain.models.TaskStatus;
 import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
 
-public class changeTaskStatue {
+public class ChangeTaskStatue {
 
     private final TaskRepository taskRepository;
 
-    public changeTaskStatue(TaskRepository taskRepository) {
+    public ChangeTaskStatue(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
