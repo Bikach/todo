@@ -1,4 +1,4 @@
-package oui.sncf.todo.core.domain.models;
+package oui.sncf.todo.core.domain.tasks.models;
 
 import java.util.Objects;
 

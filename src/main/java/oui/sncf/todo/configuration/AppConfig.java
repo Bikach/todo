@@ -2,9 +2,9 @@ package oui.sncf.todo.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import oui.sncf.todo.adapters.secondary.DataBaseTaskRepository;
-import oui.sncf.todo.adapters.secondary.DataBaseTasksLoader;
-import oui.sncf.todo.core.usecases.*;
+import oui.sncf.todo.adapters.secondary.tasksdata.DataBaseTaskRepository;
+import oui.sncf.todo.adapters.secondary.tasksdata.DataBaseTasksLoader;
+import oui.sncf.todo.core.usecases.tasks.*;
 
 @Configuration
 public class AppConfig {

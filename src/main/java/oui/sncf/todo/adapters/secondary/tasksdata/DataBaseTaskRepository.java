@@ -1,9 +1,9 @@
-package oui.sncf.todo.adapters.secondary;
+package oui.sncf.todo.adapters.secondary.tasksdata;
 
 import org.springframework.stereotype.Repository;
-import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.models.TaskStatus;
-import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
+import oui.sncf.todo.core.domain.tasks.models.Task;
+import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
+import oui.sncf.todo.core.domain.tasks.port.repositories.TaskRepository;
 
 import java.util.Optional;
 

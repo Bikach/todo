@@ -1,8 +1,8 @@
-package oui.sncf.todo.adapters.secondary.inmemmories;
+package oui.sncf.todo.adapters.secondary.tasksdata.inmemmories;
 
-import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.models.TaskStatus;
-import oui.sncf.todo.core.domain.port.loaders.TaskLoader;
+import oui.sncf.todo.core.domain.tasks.models.Task;
+import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
+import oui.sncf.todo.core.domain.tasks.port.loaders.TaskLoader;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

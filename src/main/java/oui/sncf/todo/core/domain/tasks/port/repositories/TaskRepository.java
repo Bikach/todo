@@ -1,6 +1,6 @@
-package oui.sncf.todo.core.domain.port.repositories;
+package oui.sncf.todo.core.domain.tasks.port.repositories;
 
-import oui.sncf.todo.core.domain.models.Task;
+import oui.sncf.todo.core.domain.tasks.models.Task;
 
 import java.util.Optional;
 

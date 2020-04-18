@@ -1,7 +1,7 @@
-package oui.sncf.todo.adapters.secondary.inmemmories;
+package oui.sncf.todo.adapters.secondary.tasksdata.inmemmories;
 
-import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
+import oui.sncf.todo.core.domain.tasks.models.Task;
+import oui.sncf.todo.core.domain.tasks.port.repositories.TaskRepository;
 
 import java.util.*;
 

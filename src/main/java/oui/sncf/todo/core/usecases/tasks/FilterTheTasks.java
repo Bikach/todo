@@ -1,8 +1,8 @@
-package oui.sncf.todo.core.usecases;
+package oui.sncf.todo.core.usecases.tasks;
 
-import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.models.TaskStatus;
-import oui.sncf.todo.core.domain.port.loaders.TaskLoader;
+import oui.sncf.todo.core.domain.tasks.models.Task;
+import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
+import oui.sncf.todo.core.domain.tasks.port.loaders.TaskLoader;
 
 import java.util.Set;
 import java.util.stream.Collectors;

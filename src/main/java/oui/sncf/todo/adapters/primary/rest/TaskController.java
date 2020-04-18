@@ -1,4 +1,4 @@
-package oui.sncf.todo.adapters.primary;
+package oui.sncf.todo.adapters.primary.rest;
 
 import org.springframework.web.bind.annotation.RestController;
 

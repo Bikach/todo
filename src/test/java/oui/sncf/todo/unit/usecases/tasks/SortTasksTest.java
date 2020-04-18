@@ -1,11 +1,11 @@
-package oui.sncf.todo.unit.usecases;
+package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
-import oui.sncf.todo.adapters.secondary.inmemmories.InMemoryTaskLoader;
-import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.models.TaskStatus;
-import oui.sncf.todo.core.domain.port.loaders.TaskLoader;
-import oui.sncf.todo.core.usecases.SortTasks;
+import oui.sncf.todo.adapters.secondary.tasksdata.inmemmories.InMemoryTaskLoader;
+import oui.sncf.todo.core.domain.tasks.models.Task;
+import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
+import oui.sncf.todo.core.domain.tasks.port.loaders.TaskLoader;
+import oui.sncf.todo.core.usecases.tasks.SortTasks;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package oui.sncf.todo.unit.usecases;
+package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
-import oui.sncf.todo.adapters.secondary.inmemmories.InMemoryTaskRepository;
-import oui.sncf.todo.core.domain.models.Task;
-import oui.sncf.todo.core.domain.models.TaskDoesNotExistException;
-import oui.sncf.todo.core.domain.port.repositories.TaskRepository;
-import oui.sncf.todo.core.usecases.RemoveTask;
+import oui.sncf.todo.adapters.secondary.tasksdata.inmemmories.InMemoryTaskRepository;
+import oui.sncf.todo.core.domain.tasks.models.Task;
+import oui.sncf.todo.core.domain.tasks.models.TaskDoesNotExistException;
+import oui.sncf.todo.core.domain.tasks.port.repositories.TaskRepository;
+import oui.sncf.todo.core.usecases.tasks.RemoveTask;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
