@@ -1,8 +1,8 @@
 package oui.sncf.todo.core.usecases.tasks;
 
 import oui.sncf.todo.core.domain.tasks.models.Task;
-import oui.sncf.todo.core.domain.tasks.models.TaskAlReadyExistException;
-import oui.sncf.todo.core.domain.tasks.port.repositories.TaskRepository;
+import oui.sncf.todo.core.domain.tasks.models.TaskAlreadyExistException;
+import oui.sncf.todo.core.domain.tasks.port.TaskRepository;
 
 
 public class CreateTaskByName {
@@ -16,6 +16,6 @@ public class CreateTaskByName {
     public Task of(final String name)  {
         Task task = new Task(name);
         if (taskRepository.save(task)) return task;
-        throw new TaskAlReadyExistException(task + " already exist");
+        throw new TaskAlreadyExistException(task + " already exist");
     }
 }

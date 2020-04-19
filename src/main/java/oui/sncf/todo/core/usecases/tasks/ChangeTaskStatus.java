@@ -2,13 +2,13 @@ package oui.sncf.todo.core.usecases.tasks;
 
 import oui.sncf.todo.core.domain.tasks.models.Task;
 import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
-import oui.sncf.todo.core.domain.tasks.port.repositories.TaskRepository;
+import oui.sncf.todo.core.domain.tasks.port.TaskRepository;
 
-public class ChangeTaskStatue {
+public class ChangeTaskStatus {
 
     private final TaskRepository taskRepository;
 
-    public ChangeTaskStatue(TaskRepository taskRepository) {
+    public ChangeTaskStatus(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 

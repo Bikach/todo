@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.secondary.tasksdata.inmemmories.InMemoryTaskLoader;
 import oui.sncf.todo.core.domain.tasks.models.Task;
 import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
-import oui.sncf.todo.core.domain.tasks.port.loaders.TaskLoader;
+import oui.sncf.todo.core.domain.tasks.port.TaskLoader;
 import oui.sncf.todo.core.usecases.tasks.SortTasks;
 
 import java.util.ArrayList;

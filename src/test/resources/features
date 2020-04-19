@@ -8,11 +8,14 @@ pouvoir indiquer qu'une tâche est terminée
 pouvoir indiquer qu'une tâche terminée est non terminé
 pouvoir ordonner les taches par tache en cours
 pouvoir ordonner les taches par tache in progress
+gerer la conf spring pour les usecase done
+
 
 EN COURS :
-gerer la conf spring
+refactorer les usecase filter et sort en un seul usecase
 
 BLOQUE:
 
 A FAIRE :
+gerer la conf spring data pour mongo
 toute ihm possible : http, console

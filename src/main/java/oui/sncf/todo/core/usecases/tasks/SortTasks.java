@@ -1,7 +1,7 @@
 package oui.sncf.todo.core.usecases.tasks;
 
 import oui.sncf.todo.core.domain.tasks.models.Task;
-import oui.sncf.todo.core.domain.tasks.port.loaders.TaskLoader;
+import oui.sncf.todo.core.domain.tasks.port.TaskLoader;
 
 import java.util.Comparator;
 import java.util.LinkedHashSet;

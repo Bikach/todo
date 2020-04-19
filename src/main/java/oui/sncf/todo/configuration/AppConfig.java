@@ -18,8 +18,8 @@ public class AppConfig {
     }
 
     @Bean
-    RetrieveTaskByName retrieveTaskByName(){
-        return new RetrieveTaskByName(taskRepository);
+    RetrieveByName retrieveTaskByName(){
+        return new RetrieveByName(taskRepository);
     }
 
     @Bean
@@ -28,8 +28,8 @@ public class AppConfig {
     }
 
     @Bean
-    ChangeTaskStatue changeTaskStatue(){
-        return new ChangeTaskStatue(taskRepository);
+    ChangeTaskStatus changeTaskStatue(){
+        return new ChangeTaskStatus(taskRepository);
     }
 
     @Bean
@@ -38,8 +38,8 @@ public class AppConfig {
     }
 
     @Bean
-    FilterTheTasks filterTheTasks(){
-        return new FilterTheTasks(dataBaseTasksLoader);
+    RetrieveTasks filterTheTasks(){
+        return new RetrieveTasks(dataBaseTasksLoader);
     }
 
     @Bean
