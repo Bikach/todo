@@ -9,10 +9,10 @@ pouvoir indiquer qu'une tâche terminée est non terminé
 pouvoir ordonner les taches par tache en cours
 pouvoir ordonner les taches par tache in progress
 gerer la conf spring pour les usecase done
+gerer la conf spring data pour mongo
 
 
 EN COURS :
-gerer la conf spring data pour mongo
 
 
 BLOQUE:
