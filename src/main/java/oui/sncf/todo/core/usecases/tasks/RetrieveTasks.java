@@ -9,15 +9,25 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class SortTasks {
+public class RetrieveTasks {
 
     private final TaskLoader taskLoader;
 
-    public SortTasks(TaskLoader taskLoader) {
+    public RetrieveTasks(TaskLoader taskLoader) {
         this.taskLoader = taskLoader;
     }
 
-    public Set<Task> ByStatus(TaskStatus status) {
+    public Set<Task> fetch(){
+        return taskLoader.fetch();
+    }
+
+    public Set<Task> FilterByStatus(TaskStatus filter){
+        return taskLoader.fetch().stream()
+                .filter(task -> task.getStatue().equals(filter))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
+
+    public Set<Task> SortByStatus(TaskStatus status) {
         return taskLoader.fetch()
                 .stream()
                 .sorted(comparingBy(status))

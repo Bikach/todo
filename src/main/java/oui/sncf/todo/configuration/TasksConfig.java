@@ -7,12 +7,12 @@ import oui.sncf.todo.adapters.secondary.tasksdata.DataBaseTasksLoader;
 import oui.sncf.todo.core.usecases.tasks.*;
 
 @Configuration
-public class AppConfig {
+public class TasksConfig {
 
     private final DataBaseTasksLoader dataBaseTasksLoader;
     private final DataBaseTaskRepository taskRepository;
 
-    public AppConfig(DataBaseTasksLoader dataBaseTasksLoader, DataBaseTaskRepository taskRepository) {
+    public TasksConfig(DataBaseTasksLoader dataBaseTasksLoader, DataBaseTaskRepository taskRepository) {
         this.dataBaseTasksLoader = dataBaseTasksLoader;
         this.taskRepository = taskRepository;
     }
@@ -38,13 +38,7 @@ public class AppConfig {
     }
 
     @Bean
-    FilterTasks filterTheTasks(){
-        return new FilterTasks(dataBaseTasksLoader);
+    RetrieveTasks retrieveTasks(){
+        return new RetrieveTasks(dataBaseTasksLoader);
     }
-
-    @Bean
-    SortTasks sortTasks(){
-        return new SortTasks(dataBaseTasksLoader);
-    }
-
 }
