@@ -1,6 +1,7 @@
 package oui.sncf.todo.core.usecases.tasks;
 
 import oui.sncf.todo.core.domain.tasks.models.Task;
+import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
 import oui.sncf.todo.core.domain.tasks.port.TaskLoader;
 
 import java.util.Comparator;
@@ -16,17 +17,16 @@ public class SortTasks {
         this.taskLoader = taskLoader;
     }
 
-    public Set<Task> ByStatusDone() {
+    public Set<Task> ByStatus(TaskStatus status) {
         return taskLoader.fetch()
                 .stream()
-                .sorted(Comparator.comparing(Task::getStatue).reversed())
+                .sorted(comparingBy(status))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    public Set<Task> byStatusInProgress() {
-        return taskLoader.fetch()
-                .stream()
-                .sorted(Comparator.comparing(Task::getStatue))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+    private Comparator<? super Task> comparingBy(TaskStatus status){
+        if(status.equals(TaskStatus.DONE))
+            return Comparator.comparing(Task::getStatue).reversed();
+        return Comparator.comparing(Task::getStatue);
     }
 }

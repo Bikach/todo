@@ -28,5 +28,4 @@ public class InMemoryTaskLoader implements TaskLoader {
         tasks.add(new Task("task 4"));
         tasks.add(new Task("task 5", TaskStatus.DONE));
     }
-
 }

@@ -4,25 +4,21 @@ import oui.sncf.todo.core.domain.tasks.models.Task;
 import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
 import oui.sncf.todo.core.domain.tasks.port.TaskLoader;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class RetrieveTasks {
+public class FilterTasks {
 
     private final TaskLoader taskLoader;
 
-    public RetrieveTasks(TaskLoader taskLoader) {
+    public FilterTasks(TaskLoader taskLoader) {
         this.taskLoader = taskLoader;
     }
 
-
-    public Set<Task> fetch(TaskStatus filter, TaskStatus sort){
-        if(filter == null )
-            return taskLoader.fetch();
+    public Set<Task> byStatus(TaskStatus filter){
         return taskLoader.fetch().stream()
                 .filter(task -> task.getStatue().equals(filter))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
-
 }

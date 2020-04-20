@@ -18,7 +18,7 @@ public class AppConfig {
     }
 
     @Bean
-    RetrieveByName retrieveTaskByName(){
+    RetrieveByName retrieveByName(){
         return new RetrieveByName(taskRepository);
     }
 
@@ -38,8 +38,8 @@ public class AppConfig {
     }
 
     @Bean
-    RetrieveTasks filterTheTasks(){
-        return new RetrieveTasks(dataBaseTasksLoader);
+    FilterTasks filterTheTasks(){
+        return new FilterTasks(dataBaseTasksLoader);
     }
 
     @Bean

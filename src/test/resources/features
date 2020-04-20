@@ -12,10 +12,10 @@ gerer la conf spring pour les usecase done
 
 
 EN COURS :
-refactorer les usecase filter et sort en un seul usecase
+gerer la conf spring data pour mongo
+
 
 BLOQUE:
 
 A FAIRE :
-gerer la conf spring data pour mongo
 toute ihm possible : http, console
