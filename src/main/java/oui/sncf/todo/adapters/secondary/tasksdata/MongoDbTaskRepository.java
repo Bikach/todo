@@ -8,7 +8,7 @@ import oui.sncf.todo.core.domain.tasks.port.TaskRepository;
 import java.util.Optional;
 
 @Repository
-public class DataBaseTaskRepository implements TaskRepository {
+public class MongoDbTaskRepository implements TaskRepository {
 
     @Override
     public boolean save(Task task) {

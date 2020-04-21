@@ -2,18 +2,18 @@ package oui.sncf.todo.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import oui.sncf.todo.adapters.secondary.tasksdata.DataBaseTaskRepository;
-import oui.sncf.todo.adapters.secondary.tasksdata.DataBaseTasksLoader;
+import oui.sncf.todo.adapters.secondary.tasksdata.MongoDbTaskRepository;
+import oui.sncf.todo.adapters.secondary.tasksdata.MongoDbTasksLoader;
 import oui.sncf.todo.core.usecases.tasks.*;
 
 @Configuration
 public class TasksConfig {
 
-    private final DataBaseTasksLoader dataBaseTasksLoader;
-    private final DataBaseTaskRepository taskRepository;
+    private final MongoDbTasksLoader tasksLoader;
+    private final MongoDbTaskRepository taskRepository;
 
-    public TasksConfig(DataBaseTasksLoader dataBaseTasksLoader, DataBaseTaskRepository taskRepository) {
-        this.dataBaseTasksLoader = dataBaseTasksLoader;
+    public TasksConfig(MongoDbTasksLoader tasksLoader, MongoDbTaskRepository taskRepository) {
+        this.tasksLoader = tasksLoader;
         this.taskRepository = taskRepository;
     }
 
@@ -39,6 +39,6 @@ public class TasksConfig {
 
     @Bean
     RetrieveTasks retrieveTasks(){
-        return new RetrieveTasks(dataBaseTasksLoader);
+        return new RetrieveTasks(tasksLoader);
     }
 }

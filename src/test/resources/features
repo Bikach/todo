@@ -13,6 +13,7 @@ gerer la conf spring data pour mongo
 
 
 EN COURS :
+refactor les usecase pour qu'ils retournent des dto
 
 
 BLOQUE:
