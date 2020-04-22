@@ -1,28 +1,33 @@
-package oui.sncf.todo.core.domain.tasks.models;
+package oui.sncf.todo.core.task;
 
 import java.util.Objects;
 
 public class Task {
 
     private final String name;
-    private final TaskStatus statue;
+    private TaskStatus status;
 
     public Task(String name) {
         this.name = name;
-        this.statue = TaskStatus.IN_PROGRESS;
+        this.status = TaskStatus.IN_PROGRESS;
     }
 
-    public Task(final String name, final TaskStatus statue){
+    public Task(final String name, final TaskStatus status){
         this.name = name;
-        this.statue = statue;
+        this.status = status;
+    }
+
+    public void changeStatus(TaskStatus newStatus) {
+        // validation metier
+        this.status = newStatus;
     }
 
     public String getName() {
         return name;
     }
 
-    public TaskStatus getStatue() {
-        return statue;
+    public TaskStatus getStatus() {
+        return status;
     }
 
     @Override
@@ -42,7 +47,7 @@ public class Task {
     public String toString() {
         return "Task{" +
                 "name='" + name + '\'' +
-                ", statue=" + statue +
+                ", statue=" + status +
                 '}';
     }
 }

@@ -1,11 +1,11 @@
 package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
-import oui.sncf.todo.adapters.secondary.tasksdata.inmemmories.InMemoryTaskRepository;
-import oui.sncf.todo.core.domain.tasks.models.Task;
-import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
-import oui.sncf.todo.core.domain.tasks.port.TaskRepository;
-import oui.sncf.todo.core.usecases.tasks.ChangeTaskStatus;
+import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
+import oui.sncf.todo.core.task.Task;
+import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.usecases.ChangeTaskStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,9 +19,9 @@ public class changeTaskStatusTest {
     void should_return_a_task_that_has_changed_to_done(){
         Task task = new Task("ouigo");
         taskRepository.save(task);
-        changeTaskStatus.of(task, TaskStatus.DONE);
+        changeTaskStatus.of("ouigo", TaskStatus.DONE);
 
-        Task actualTask = taskRepository.getByName(task.getName()).get();
+        Task actualTask = taskRepository.getByName(task.getName());
 
         assertThat(actualTask).isEqualTo(new Task("ouigo", TaskStatus.DONE));
     }
@@ -30,9 +30,9 @@ public class changeTaskStatusTest {
     void should_return_a_task_that_has_changed_to_in_progress(){
         Task task = new Task("ouigo", TaskStatus.DONE);
         taskRepository.save(task);
-        changeTaskStatus.of(task, TaskStatus.IN_PROGRESS);
+        changeTaskStatus.of("ouigo", TaskStatus.IN_PROGRESS);
 
-        Task actualTask = taskRepository.getByName(task.getName()).get();
+        Task actualTask = taskRepository.getByName(task.getName());
 
         assertThat(actualTask).isEqualTo(new Task("ouigo", TaskStatus.IN_PROGRESS));
     }

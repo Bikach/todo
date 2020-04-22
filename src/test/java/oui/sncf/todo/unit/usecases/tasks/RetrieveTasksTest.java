@@ -1,12 +1,12 @@
 package oui.sncf.todo.unit.usecases.tasks;
 
-import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import oui.sncf.todo.adapters.secondary.tasksdata.inmemmories.InMemoryTaskLoader;
-import oui.sncf.todo.core.domain.tasks.models.Task;
-import oui.sncf.todo.core.domain.tasks.models.TaskStatus;
-import oui.sncf.todo.core.domain.tasks.port.TaskLoader;
-import oui.sncf.todo.core.usecases.tasks.RetrieveTasks;
+import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
+import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.core.task.Task;
+import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.usecases.RetrieveTasks;
 
 import java.util.Set;
 
@@ -14,13 +14,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RetrieveTasksTest {
 
-    private final TaskLoader taskLoader = new InMemoryTaskLoader();;
-    private final RetrieveTasks retrieveTasks = new RetrieveTasks(taskLoader);
+
+    private static final TaskRepository taskRepository = new InMemoryTaskRepository();
+    private final RetrieveTasks retrieveTasks = new RetrieveTasks(taskRepository);
+
+    @BeforeAll
+    static void initAll(){
+        taskRepository.save(new Task("task 1"));
+        taskRepository.save(new Task("task 2"));
+        taskRepository.save(new Task("task 3", TaskStatus.DONE));
+        taskRepository.save(new Task("task 4"));
+        taskRepository.save(new Task("task 5", TaskStatus.DONE));
+    }
 
 
     @Test
     void should_return_tasks_without_filter_and_sort(){
-        Set<Task> tasks = retrieveTasks.fetch();
+        Set<Task> tasks = retrieveTasks.fetch(null);
         assertThat(tasks.toArray())
                 .containsExactly(
                         new Task("task 1"),
@@ -31,56 +41,26 @@ public class RetrieveTasksTest {
                 );
     }
 
-    @Nested
-    class filter {
-        @Test
-        void should_only_return_done_tasks(){
-            Set<Task> doneStatusFilteredTasks = retrieveTasks.FilterByStatus(TaskStatus.DONE);
-            assertThat(doneStatusFilteredTasks.toArray())
-                    .containsExactly(
-                            new Task("task 3", TaskStatus.DONE),
-                            new Task("task 5", TaskStatus.DONE)
-                    );
-        }
 
-        @Test
-        void should_only_return_in_progress_tasks(){
-            Set<Task> inProgressFilteredTasks = retrieveTasks.FilterByStatus(TaskStatus.IN_PROGRESS);
-            assertThat(inProgressFilteredTasks.toArray())
-                    .containsExactly(
-                            new Task("task 1"),
-                            new Task("task 2"),
-                            new Task("task 4")
-                    );
-        }
+    @Test
+    void should_only_return_done_tasks(){
+        Set<Task> doneStatusFilteredTasks = retrieveTasks.fetch(TaskStatus.DONE);
+        assertThat(doneStatusFilteredTasks.toArray())
+                .containsExactly(
+                        new Task("task 3", TaskStatus.DONE),
+                        new Task("task 5", TaskStatus.DONE)
+                );
     }
 
-    @Nested
-    class Sort {
-        @Test
-        void shouldReturnTasksSortedByStatusDone(){
-            Set<Task> tasksSorted = retrieveTasks.SortByStatus(TaskStatus.DONE);
-            assertThat(tasksSorted.toArray())
-                    .containsExactly(
-                            new Task("task 3", TaskStatus.DONE),
-                            new Task("task 5", TaskStatus.DONE),
-                            new Task("task 1"),
-                            new Task("task 2"),
-                            new Task("task 4")
-                    );
-        }
-
-        @Test
-        void shouldReturnTasksSortedByStatusInProgress(){
-            Set<Task> tasksSorted = retrieveTasks.SortByStatus(TaskStatus.IN_PROGRESS);
-            assertThat(tasksSorted.toArray())
-                    .containsExactly(
-                            new Task("task 1"),
-                            new Task("task 2"),
-                            new Task("task 4"),
-                            new Task("task 3", TaskStatus.DONE),
-                            new Task("task 5", TaskStatus.DONE)
-                    );
-        }
+    @Test
+    void should_only_return_in_progress_tasks(){
+        Set<Task> inProgressFilteredTasks = retrieveTasks.fetch(TaskStatus.IN_PROGRESS);
+        assertThat(inProgressFilteredTasks.toArray())
+                .containsExactly(
+                        new Task("task 1"),
+                        new Task("task 2"),
+                        new Task("task 4")
+                );
     }
+
 }
