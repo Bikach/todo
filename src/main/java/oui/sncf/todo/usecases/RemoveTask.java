@@ -2,6 +2,7 @@ package oui.sncf.todo.usecases;
 
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.core.task.TaskStatus;
 
 public class RemoveTask {
 
@@ -13,7 +14,7 @@ public class RemoveTask {
 
     public void by(final String taskName) {
         Task task = taskRepository.getByName(taskName);
-        // validation de status (logique de supression)
-        taskRepository.remove(task);
+        if(task.getStatus() == TaskStatus.DONE)
+            taskRepository.remove(task);
     }
 }

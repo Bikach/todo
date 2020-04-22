@@ -1,10 +1,10 @@
 package oui.sncf.todo.adapters.inmemmories;
 
-import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.core.task.Task;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class InMemoryTaskRepository implements TaskRepository {
 
@@ -25,9 +25,7 @@ public class InMemoryTaskRepository implements TaskRepository {
         return tasks.stream()
                 .filter(task -> task.getName().equals(name))
                 .findFirst()
-                .orElseThrow(
-                        () -> new TaskDoesNotExistException("The task "+ name + " doesn't exist")
-                );
+                .orElse(null);
     }
 
     @Override

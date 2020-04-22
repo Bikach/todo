@@ -1,56 +1,23 @@
 FAIT :
-
-pouvoir créer une tache avec un nom
- - faire le controle lors de la creation par le nom
-Recuperer une tache par son nom
-pouvoir filtrer les tâches non terminées ou terminées
-pouvoir indiquer qu'une tâche est terminée
-pouvoir indiquer qu'une tâche terminée est non terminé
-pouvoir ordonner les taches par tache en cours
-pouvoir ordonner les taches par tache in progress
-gerer la conf spring pour les usecase done
-gerer la conf spring data pour mongo
-pouvoir supprimer une tâche
+- pouvoir créer une tache avec un nom
+- Recuperer une tache par son nom
+- pouvoir filtrer les tâches non terminées ou terminées
+- pouvoir indiquer qu'une tâche est terminée ou en cours
+- pouvoir supprimer une tâche
+- gerer la conf spring pour les usecase done
+- gerer la conf spring data pour mongo
 
 
 EN COURS :
-- refactor les usecase pour qu'ils retournent des dto
+- validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 
 
 BLOQUE:
+- refactor les usecase pour qu'ils retournent des dto
 
 
 A FAIRE :
-
+- pouvoir ordonner les taches
 - le nom doit suivre un modèle : :préfixe: nom (préfixe : texte libre sans espace, nom :texte libre)
 - Pouvoir renommer une tache
-- validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 - toute ihm possible : http, console
-
-
-
-
-
-GERER LES DTO
-Implementation use case
-
-
-En pratique, il n’est pas conseiller d’exposer les objets du domaine car les client pour faire des choses dessus sans passer par le usecase
-			Logique : pas de validation du status
-			output : Task, ok (seulement si elle n’est pas en input)
-
-
-Vocabulaire : retrieve, fetch, get?
-			Plusieurs méthode public : en pratique c’est à éviter pour éviter les classe fourre-tout
-			SortByStatus -> besoin?
-			comparingBy
-
-Package Core/domain
-Core et domain c’est pareil selon moi : choisir un des 2
-		Sous package tasks : remplacer par domain.model.task
-		TaskLoader : différence avec TaskRepository?
-		Sous package port : ne pas faire un pseudo couche pour avoir un dépendance forte antre package
-> en pratique, on met les repository dans le même package de l’agrégat
-
-
-Pouvoir renommer une tache
