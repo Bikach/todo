@@ -13,8 +13,7 @@ public class changeTaskStatusTest {
 
     private final TaskRepository taskRepository = new InMemoryTaskRepository();;
     private final ChangeTaskStatus changeTaskStatus = new ChangeTaskStatus(taskRepository);
-
-
+    
     @Test
     void should_return_a_task_that_has_changed_to_done(){
         Task task = new Task("ouigo");

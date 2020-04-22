@@ -14,5 +14,4 @@ public class RetrieveTask {
     public Task get(String nameTask){
         return taskRepository.getByName(nameTask);
     }
-
 }
