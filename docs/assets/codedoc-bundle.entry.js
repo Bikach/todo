@@ -12,7 +12,6 @@ import { loadDeferredIFrames } from '/Users/chakib_houd/localspace/workspace/tod
 import { smoothLoading } from '/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/transport/smooth-loading.js';smoothLoading();
 import { tocHighlight } from '/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/components/page/toc/toc-highlight.js';tocHighlight();
 import { postNavSearch } from '/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/components/page/toc/search/post-nav/index.js';postNavSearch();
-import { reloadOnChange } from '/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/serve/reload.js';reloadOnChange();
 import { ToCPrevNext } from '/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/components/page/toc/prevnext/index.js';
 import { GithubSearch } from '/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/components/misc/github/search.js';
 import { ToCToggle } from '/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/components/page/toc/toggle/index.js';

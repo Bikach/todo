@@ -64,11 +64,6 @@
       "name": "postNavSearch",
       "filename": "/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/components/page/toc/search/post-nav/index.js",
       "hash": "UAiP8geLvUJERr1b4iH8wQ=="
-    },
-    {
-      "name": "reloadOnChange",
-      "filename": "/Users/chakib_houd/localspace/workspace/todo/.codedoc/node_modules/@codedoc/core/dist/es6/serve/reload.js",
-      "hash": "gUiC6z54JJTEfMG/LZl1rA=="
     }
   ],
   "components": [
