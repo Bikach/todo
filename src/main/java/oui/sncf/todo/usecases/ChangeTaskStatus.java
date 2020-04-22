@@ -12,12 +12,9 @@ public class ChangeTaskStatus {
         this.taskRepository = taskRepository;
     }
 
-    public Task of(String nameTask, TaskStatus newStatus){
+    public void of(String nameTask, TaskStatus newStatus){
         Task task = taskRepository.getByName(nameTask);
         task.changeStatus(newStatus);
         taskRepository.save(task);
-        return task;
     }
-
-
 }

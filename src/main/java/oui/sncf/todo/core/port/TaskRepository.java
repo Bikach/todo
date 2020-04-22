@@ -6,7 +6,7 @@ import java.util.Set;
 
 
 public interface TaskRepository {
-    boolean save(Task task);
+    void save(Task task);
     boolean remove(Task task);
     Task getByName(String taskName);
     Set<Task> fetch();

@@ -10,9 +10,7 @@ import java.util.Set;
 public class MongoDbTaskRepository implements TaskRepository {
 
     @Override
-    public boolean save(Task task) {
-        return false;
-    }
+    public void save(Task task) { }
 
     @Override
     public boolean remove(Task task) {

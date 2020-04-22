@@ -11,8 +11,8 @@ public class InMemoryTaskRepository implements TaskRepository {
     private Set<Task> tasks = new LinkedHashSet<>();
 
     @Override
-    public boolean save(Task task) {
-        return tasks.add(task);
+    public void save(Task task) {
+        tasks.add(task);
     }
 
     @Override

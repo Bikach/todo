@@ -1,8 +1,7 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskAlreadyExistException;
 import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.core.task.Task;
 
 
 public class CreateTask {
@@ -13,9 +12,8 @@ public class CreateTask {
         this.taskRepository = taskRepository;
     }
 
-    public Task of(final String name)  {
+    public void of(final String name)  {
         Task task = new Task(name);
-        if (taskRepository.save(task)) return task;
-        throw new TaskAlreadyExistException(task + " already exist");
+        taskRepository.save(task);
     }
 }
