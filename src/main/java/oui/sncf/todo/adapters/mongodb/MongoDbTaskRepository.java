@@ -3,6 +3,7 @@ package oui.sncf.todo.adapters.mongodb;
 import org.springframework.stereotype.Repository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class MongoDbTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Set<Task> fetch() {
+    public Set<TaskDto> fetch(TaskStatus status) {
         return null;
     }
 }

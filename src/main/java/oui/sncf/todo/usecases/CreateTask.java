@@ -12,8 +12,8 @@ public class CreateTask {
         this.taskRepository = taskRepository;
     }
 
-    public void of(final String name)  {
-        Task task = new Task(name);
+    public void by(final String nameTask)  {
+        Task task = new Task(nameTask);
         taskRepository.save(task);
     }
 }

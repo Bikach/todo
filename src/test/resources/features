@@ -6,10 +6,10 @@ FAIT :
 - pouvoir supprimer une tâche
 - gerer la conf spring pour les usecase done
 - gerer la conf spring data pour mongo
+- validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 
 
 EN COURS :
-- validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 
 
 BLOQUE:

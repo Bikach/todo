@@ -1,10 +1,13 @@
 package oui.sncf.todo.adapters.inmemmories;
 
+import oui.sncf.todo.adapters.mongodb.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
+import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class InMemoryTaskRepository implements TaskRepository {
 
@@ -29,7 +32,21 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Set<Task> fetch() {
-        return tasks;
+    public Set<TaskDto> fetch(TaskStatus status) {
+        return (status == null) ? unfilteredTasks(): filteredTasks(status);
+
+    }
+
+    private Set<TaskDto> unfilteredTasks(){
+        return tasks.stream()
+                .map(task -> new TaskDto(task.getName(), task.getStatus()))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
+
+    private Set<TaskDto> filteredTasks(TaskStatus status){
+        return tasks.stream()
+                .filter(task -> task.getStatus().equals(status))
+                .map(task -> new TaskDto(task.getName(), task.getStatus()))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }

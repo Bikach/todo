@@ -1,26 +1,20 @@
 package oui.sncf.todo.usecases;
 
+import oui.sncf.todo.adapters.mongodb.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
-import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class RetrieveTasks {
 
     private final TaskRepository taskRepository;
 
-    public RetrieveTasks(TaskRepository taskRepository) {
+    public RetrieveTasks(final TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
-    public Set<Task> fetch(TaskStatus filter){
-        return (filter == null) ?
-                taskRepository.fetch() :
-                taskRepository.fetch().stream()
-                        .filter(task -> task.getStatus().equals(filter))
-                        .collect(Collectors.toCollection(LinkedHashSet::new));
+    public Set<TaskDto> retrieve(final TaskStatus status){
+        return taskRepository.fetch(status);
     }
 }

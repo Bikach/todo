@@ -7,11 +7,11 @@ public class RetrieveTask {
 
     private final TaskRepository taskRepository;
 
-    public RetrieveTask(TaskRepository taskRepository) {
+    public RetrieveTask(final TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
-    public Task get(String nameTask){
+    public Task retrieve(final String nameTask){
         return taskRepository.getByName(nameTask);
     }
 }

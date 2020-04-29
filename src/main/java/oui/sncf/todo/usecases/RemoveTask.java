@@ -8,7 +8,7 @@ public class RemoveTask {
 
     private final TaskRepository taskRepository;
 
-    public RemoveTask(TaskRepository taskRepository) {
+    public RemoveTask(final TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 

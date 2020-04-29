@@ -3,6 +3,7 @@ package oui.sncf.todo.unit.usecases.tasks;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
+import oui.sncf.todo.adapters.mongodb.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
@@ -30,36 +31,36 @@ public class RetrieveTasksTest {
 
     @Test
     void should_return_tasks_without_filter_and_sort(){
-        Set<Task> tasks = retrieveTasks.fetch(null);
+        Set<TaskDto> tasks = retrieveTasks.retrieve(null);
         assertThat(tasks.toArray())
                 .containsExactly(
-                        new Task("task 1"),
-                        new Task("task 2"),
-                        new Task("task 3", TaskStatus.DONE),
-                        new Task("task 4"),
-                        new Task("task 5", TaskStatus.DONE)
+                        new TaskDto("task 1"),
+                        new TaskDto("task 2"),
+                        new TaskDto("task 3", TaskStatus.DONE),
+                        new TaskDto("task 4"),
+                        new TaskDto("task 5", TaskStatus.DONE)
                 );
     }
 
 
     @Test
     void should_only_return_done_tasks(){
-        Set<Task> doneStatusFilteredTasks = retrieveTasks.fetch(TaskStatus.DONE);
+        Set<TaskDto> doneStatusFilteredTasks = retrieveTasks.retrieve(TaskStatus.DONE);
         assertThat(doneStatusFilteredTasks.toArray())
                 .containsExactly(
-                        new Task("task 3", TaskStatus.DONE),
-                        new Task("task 5", TaskStatus.DONE)
+                        new TaskDto("task 3", TaskStatus.DONE),
+                        new TaskDto("task 5", TaskStatus.DONE)
                 );
     }
 
     @Test
     void should_only_return_in_progress_tasks(){
-        Set<Task> inProgressFilteredTasks = retrieveTasks.fetch(TaskStatus.IN_PROGRESS);
+        Set<TaskDto> inProgressFilteredTasks = retrieveTasks.retrieve(TaskStatus.IN_PROGRESS);
         assertThat(inProgressFilteredTasks.toArray())
                 .containsExactly(
-                        new Task("task 1"),
-                        new Task("task 2"),
-                        new Task("task 4")
+                        new TaskDto("task 1"),
+                        new TaskDto("task 2"),
+                        new TaskDto("task 4")
                 );
     }
 

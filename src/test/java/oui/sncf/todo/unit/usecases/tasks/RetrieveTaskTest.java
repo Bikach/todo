@@ -18,7 +18,7 @@ public class RetrieveTaskTest {
         Task expectedTask = new Task("ouigo");
         taskRepository.save(expectedTask);
 
-        Task actualTask = retrieveTask.get("ouigo");
+        Task actualTask = retrieveTask.retrieve("ouigo");
 
         assertThat(actualTask).isEqualTo(expectedTask);
     }

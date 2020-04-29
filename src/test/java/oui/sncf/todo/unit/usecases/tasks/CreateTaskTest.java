@@ -15,7 +15,7 @@ class CreateTaskTest {
 
     @Test
     void should_return_a_new_task_called_ouigo(){
-        createTask.of("ouigo");
+        createTask.by("ouigo");
         Task actualTask = taskRepository.getByName("ouigo");
         assertThat(actualTask.getName()).isEqualTo("ouigo");
     }
