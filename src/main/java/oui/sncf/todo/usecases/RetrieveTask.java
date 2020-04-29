@@ -1,6 +1,6 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.core.task.Task;
+import oui.sncf.todo.adapters.mongodb.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 
 public class RetrieveTask {
@@ -11,7 +11,7 @@ public class RetrieveTask {
         this.taskRepository = taskRepository;
     }
 
-    public Task retrieve(final String nameTask){
+    public TaskDto retrieve(final String nameTask){
         return taskRepository.getByName(nameTask);
     }
 }

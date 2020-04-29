@@ -1,5 +1,6 @@
 package oui.sncf.todo.usecases;
 
+import oui.sncf.todo.adapters.mongodb.TaskDto;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.core.port.TaskRepository;
@@ -13,7 +14,8 @@ public class ChangeTaskStatus {
     }
 
     public void of(String nameTask, TaskStatus newStatus){
-        Task task = taskRepository.getByName(nameTask);
+        TaskDto taskDto = taskRepository.getByName(nameTask);
+        Task task = new Task(taskDto.getName(), taskDto.getStatus());
         task.changeStatus(newStatus);
         taskRepository.save(task);
     }

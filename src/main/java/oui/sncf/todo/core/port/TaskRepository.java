@@ -10,6 +10,6 @@ import java.util.Set;
 public interface TaskRepository {
     void save(Task task);
     boolean remove(Task task);
-    Task getByName(String taskName);
+    TaskDto getByName(String taskName);
     Set<TaskDto> fetch(TaskStatus status);
 }

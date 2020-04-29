@@ -18,6 +18,14 @@ public class TaskDto {
         this.status = status;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

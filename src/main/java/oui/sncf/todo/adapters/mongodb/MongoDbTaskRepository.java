@@ -19,7 +19,7 @@ public class MongoDbTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Task getByName(String taskName) {
+    public TaskDto getByName(String taskName) {
         return null;
     }
 

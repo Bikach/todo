@@ -1,5 +1,6 @@
 package oui.sncf.todo.usecases;
 
+import oui.sncf.todo.adapters.mongodb.TaskDto;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.TaskStatus;
@@ -13,8 +14,8 @@ public class RemoveTask {
     }
 
     public void by(final String taskName) {
-        Task task = taskRepository.getByName(taskName);
-        if(task.getStatus() == TaskStatus.DONE)
-            taskRepository.remove(task);
+        TaskDto taskDto = taskRepository.getByName(taskName);
+        if(taskDto.getStatus() == TaskStatus.DONE)
+            taskRepository.remove(new Task(taskDto.getName(), taskDto.getStatus()));
     }
 }
