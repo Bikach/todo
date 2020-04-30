@@ -6,6 +6,7 @@ FAIT :
 - pouvoir supprimer une tâche
 - gerer la conf spring pour les usecase done
 - gerer la conf spring data pour mongo
+- refactor les usecase pour qu'ils retournent des dto
 - validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 
 
@@ -13,7 +14,6 @@ EN COURS :
 
 
 BLOQUE:
-- refactor les usecase pour qu'ils retournent des dto
 
 
 A FAIRE :

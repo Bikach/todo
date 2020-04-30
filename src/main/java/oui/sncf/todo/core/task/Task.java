@@ -30,6 +30,11 @@ public class Task {
         return status;
     }
 
+    public void validateStatus() {
+        if(this.status == TaskStatus.IN_PROGRESS)
+            throw new TaskAlwaysInProgressException("The task is already in progress");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
