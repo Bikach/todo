@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Task {
 
-    private final String name;
+    private String name;
     private TaskStatus status;
 
     public Task(String name) {
@@ -18,8 +18,14 @@ public class Task {
     }
 
     public void changeStatus(TaskStatus newStatus) {
-        // validation metier
+        // todo validate status
         this.status = newStatus;
+    }
+
+
+    public void changeName(String newName) {
+        // todo validate name
+        this.name = newName;
     }
 
     public String getName() {

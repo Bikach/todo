@@ -8,9 +8,11 @@ FAIT :
 - gerer la conf spring data pour mongo
 - refactor les usecase pour qu'ils retournent des dto
 - validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
+- Pouvoir renommer une tache
 
 
 EN COURS :
+- le nom doit suivre un modèle : :préfixe: nom (préfixe : texte libre sans espace, nom :texte libre)
 
 
 BLOQUE:
@@ -18,6 +20,4 @@ BLOQUE:
 
 A FAIRE :
 - pouvoir ordonner les taches
-- le nom doit suivre un modèle : :préfixe: nom (préfixe : texte libre sans espace, nom :texte libre)
-- Pouvoir renommer une tache
 - toute ihm possible : http, console
