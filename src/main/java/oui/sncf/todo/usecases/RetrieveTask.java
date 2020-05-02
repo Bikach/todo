@@ -1,6 +1,6 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.adapters.mongodb.TaskDto;
+import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 
 public class RetrieveTask {

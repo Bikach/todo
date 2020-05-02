@@ -4,7 +4,7 @@ FAIT :
 - pouvoir filtrer les tâches non terminées ou terminées
 - pouvoir indiquer qu'une tâche est terminée ou en cours
 - pouvoir supprimer une tâche
-- gerer la conf spring pour les usecase done
+- gerer la conf spring pour les usecase
 - gerer la conf spring data pour mongo
 - refactor les usecase pour qu'ils retournent des dto
 - validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
@@ -13,11 +13,25 @@ FAIT :
 
 EN COURS :
 - le nom doit suivre un modèle : :préfixe: nom (préfixe : texte libre sans espace, nom :texte libre)
+detail :
+    Optionnel
+    Concaténé avec le nom
+    separé par :
+    Sans espace
+    Peut être modifié
+
+exemple :
+    - :ouigo: acheter un billet
+    - :course_ramadan: couscous, semoule, dates...
 
 
 BLOQUE:
 
 
 A FAIRE :
+- pouvoir renomer le prefix
+- pouvoir filter les prefixes identiques
 - pouvoir ordonner les taches
 - toute ihm possible : http, console
+
+

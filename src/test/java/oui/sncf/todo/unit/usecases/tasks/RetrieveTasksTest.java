@@ -3,10 +3,11 @@ package oui.sncf.todo.unit.usecases.tasks;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
-import oui.sncf.todo.adapters.mongodb.TaskDto;
+import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.RetrieveTasks;
 
 import java.util.Set;
@@ -19,6 +20,8 @@ public class RetrieveTasksTest {
     private static final TaskRepository taskRepository = new InMemoryTaskRepository();
     private final RetrieveTasks retrieveTasks = new RetrieveTasks(taskRepository);
 
+    private static final String NO_PREFIX = "";
+
     @BeforeAll
     static void initAll(){
         taskRepository.save(new Task("task 1"));
@@ -30,15 +33,15 @@ public class RetrieveTasksTest {
 
 
     @Test
-    void should_return_tasks_without_filter_and_sort(){
+    void should_return_tasks_without_filter(){
         Set<TaskDto> tasks = retrieveTasks.retrieve(null);
         assertThat(tasks.toArray())
                 .containsExactly(
-                        new TaskDto("task 1"),
-                        new TaskDto("task 2"),
-                        new TaskDto("task 3", TaskStatus.DONE),
-                        new TaskDto("task 4"),
-                        new TaskDto("task 5", TaskStatus.DONE)
+                        new TaskDtoBuilder().name("task 1").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 2").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 3").prefix(NO_PREFIX).status(TaskStatus.DONE).build(),
+                        new TaskDtoBuilder().name("task 4").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 5").prefix(NO_PREFIX).status(TaskStatus.DONE).build()
                 );
     }
 
@@ -48,8 +51,8 @@ public class RetrieveTasksTest {
         Set<TaskDto> doneStatusFilteredTasks = retrieveTasks.retrieve(TaskStatus.DONE);
         assertThat(doneStatusFilteredTasks.toArray())
                 .containsExactly(
-                        new TaskDto("task 3", TaskStatus.DONE),
-                        new TaskDto("task 5", TaskStatus.DONE)
+                        new TaskDtoBuilder().name("task 3").prefix(NO_PREFIX).status(TaskStatus.DONE).build(),
+                        new TaskDtoBuilder().name("task 5").prefix(NO_PREFIX).status(TaskStatus.DONE).build()
                 );
     }
 
@@ -58,9 +61,9 @@ public class RetrieveTasksTest {
         Set<TaskDto> inProgressFilteredTasks = retrieveTasks.retrieve(TaskStatus.IN_PROGRESS);
         assertThat(inProgressFilteredTasks.toArray())
                 .containsExactly(
-                        new TaskDto("task 1"),
-                        new TaskDto("task 2"),
-                        new TaskDto("task 4")
+                        new TaskDtoBuilder().name("task 1").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 2").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 4").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build()
                 );
     }
 

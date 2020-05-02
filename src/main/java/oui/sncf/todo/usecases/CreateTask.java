@@ -12,8 +12,14 @@ public class CreateTask {
         this.taskRepository = taskRepository;
     }
 
-    public void by(final String nameTask)  {
-        Task task = new Task(nameTask);
+    public void by(final String name)  {
+        Task task = new Task(name);
+        taskRepository.save(task);
+    }
+
+    public void by(final String prefix, final String name)  {
+        Task task = new Task(name);
+        task.addPrefix(prefix);
         taskRepository.save(task);
     }
 }

@@ -8,10 +8,15 @@ java 8
 maven
 docker
 
-#create and start mongo container
+## récuperer image mongo :
 - docker pull mongo
+
+## créer et lancer un container :
 - docker run -d -p 27017-27019:27017-27019 --name mongo-todo-app mongo
 
-command mongo :
+## lancer et arreter le container :
+- docker start/stop mongo-todo-app
+
+## commandes mongo :
 - use todo
 - db.createCollections("taks")
