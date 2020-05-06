@@ -1,16 +1,24 @@
 package oui.sncf.todo.adapters.dtos;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.Objects;
 
+@Document("task")
 public class TaskDto {
 
+    @Id
+    private String id;
     private String name;
     private String prefix;
     private TaskStatus status;
 
-    public TaskDto( String prefix, String name, TaskStatus status) {
+    public TaskDto() {
+    }
+
+    public TaskDto(String prefix, String name, TaskStatus status) {
         this.prefix = prefix;
         this.name = name;
         this.status = status;

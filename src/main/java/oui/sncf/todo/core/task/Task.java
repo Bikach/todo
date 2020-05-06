@@ -1,7 +1,5 @@
 package oui.sncf.todo.core.task;
 
-import sun.invoke.empty.Empty;
-
 import java.util.Objects;
 
 public class Task {
@@ -9,7 +7,6 @@ public class Task {
     private String name;
     private String prefix = "";
     private TaskStatus status;
-
 
     public Task(String name) {
         this.name = name;
