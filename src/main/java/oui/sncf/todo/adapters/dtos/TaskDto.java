@@ -15,13 +15,18 @@ public class TaskDto {
     private String prefix;
     private TaskStatus status;
 
-    public TaskDto() {
-    }
-
     public TaskDto(String prefix, String name, TaskStatus status) {
         this.prefix = prefix;
         this.name = name;
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 
     public String getName() {

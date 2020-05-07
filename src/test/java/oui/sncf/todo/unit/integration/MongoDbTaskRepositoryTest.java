@@ -1,14 +1,11 @@
 package oui.sncf.todo.unit.integration;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import oui.sncf.todo.adapters.dtos.TaskDto;
@@ -46,27 +43,22 @@ public class MongoDbTaskRepositoryTest {
         Task task = new Task("task 6");
         taskRepository.save(task);
 
-        Query query = new Query();
-        query.addCriteria(Criteria.where("name").is("task 6"));
-
-        List<TaskDto> taskFromDB =  mongoTemplate.find(query, TaskDto.class);
+        List<TaskDto> taskFromDB =  mongoTemplate.findAll(TaskDto.class);
         TaskDto taskDto = new TaskDto(task.getPrefix(), task.getName(), task.getStatus());
+
         assertThat(taskFromDB).contains(taskDto);
     }
 
     @Test
-    @Disabled
     void should_remove_a_task(){
-        Task task = new Task("task 6");
-        mongoTemplate.save(task);
-
+        Task task = new Task("task 4");
         taskRepository.remove(task);
 
-        Query query = new Query();
-        query.addCriteria(Criteria.where("name").is("task 6"));
+        List<TaskDto> taskFromDB =  mongoTemplate.findAll(TaskDto.class);
+        TaskDto taskDto = new TaskDto(task.getPrefix(), task.getName(), task.getStatus());
 
-        List<Task> taskFromDB =  mongoTemplate.find(query, Task.class);
-        assertThat(taskFromDB).doesNotContain(task);
+        assertThat(taskFromDB).doesNotContain(taskDto);
     }
+
 
 }
