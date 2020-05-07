@@ -15,6 +15,7 @@ import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -23,6 +24,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 public class MongoDbTaskRepositoryTest {
+
+    private static final String NO_PREFIX = "";
 
     @Autowired
     private  MongoTemplate mongoTemplate;
@@ -45,10 +48,10 @@ public class MongoDbTaskRepositoryTest {
         Task task = new Task("task 6");
         taskRepository.save(task);
 
-        List<TaskDto> taskFromDB =  mongoTemplate.findAll(TaskDto.class);
+        List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
         TaskDto taskDto = new TaskDto(task.getPrefix(), task.getName(), task.getStatus());
 
-        assertThat(taskFromDB).contains(taskDto);
+        assertThat(tasksFromDB).contains(taskDto);
     }
 
     @Test
@@ -56,10 +59,10 @@ public class MongoDbTaskRepositoryTest {
         Task task = new Task("task 4");
         taskRepository.remove(task);
 
-        List<TaskDto> taskFromDB =  mongoTemplate.findAll(TaskDto.class);
+        List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
         TaskDto taskDto = new TaskDto(task.getPrefix(), task.getName(), task.getStatus());
 
-        assertThat(taskFromDB).doesNotContain(taskDto);
+        assertThat(tasksFromDB).doesNotContain(taskDto);
     }
 
     @Test
@@ -88,5 +91,41 @@ public class MongoDbTaskRepositoryTest {
                 .hasMessage("The Task doesn't exist.");
     }
 
+    @Test
+    void should_return_tasks_without_filter(){
+        Set<TaskDto> tasksFromDB = taskRepository.fetch(null);
+
+        assertThat(tasksFromDB.toArray())
+                .containsExactly(
+                        new TaskDto("", "task 1", TaskStatus.IN_PROGRESS),
+                        new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS),
+                        new TaskDto("","task 3", TaskStatus.DONE),
+                        new TaskDto("", "task 4", TaskStatus.IN_PROGRESS),
+                        new TaskDto("cinema", "task 5", TaskStatus.DONE)
+                );
+    }
+
+    @Test
+    void should_only_return_done_tasks(){
+        Set<TaskDto> tasksFromDB = taskRepository.fetch(TaskStatus.DONE);
+
+        assertThat(tasksFromDB.toArray())
+                .containsExactly(
+                        new TaskDto("","task 3", TaskStatus.DONE),
+                        new TaskDto("cinema", "task 5", TaskStatus.DONE)
+                );
+    }
+
+    @Test
+    void should_only_return_in_progress_tasks(){
+        Set<TaskDto> tasksFromDB = taskRepository.fetch(TaskStatus.IN_PROGRESS);
+
+        assertThat(tasksFromDB.toArray())
+                .containsExactly(
+                        new TaskDto("", "task 1", TaskStatus.IN_PROGRESS),
+                        new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS),
+                        new TaskDto("", "task 4", TaskStatus.IN_PROGRESS)
+                );
+    }
 
 }

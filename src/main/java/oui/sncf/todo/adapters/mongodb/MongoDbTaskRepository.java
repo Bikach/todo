@@ -11,7 +11,9 @@ import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Repository
 @EnableMongoRepositories(basePackages = "oui.sncf.todo.adapters.mongodb")
@@ -64,6 +66,11 @@ public class MongoDbTaskRepository implements TaskRepository {
 
     @Override
     public Set<TaskDto> fetch(TaskStatus status) {
-        return null;
+        if(status == null)
+            return new LinkedHashSet<>(mongoTemplate.findAll(TaskDto.class));
+        return mongoTemplate.findAll(TaskDto.class)
+                .stream()
+                .filter(taskDto -> taskDto.getStatus().equals(status))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }
