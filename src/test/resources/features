@@ -11,10 +11,10 @@ FAIT :
 - Pouvoir renommer une tache
 - mettre des optionnals pour les get et fetch et gerer les exeption coté usecase
 - supprimer prefix
+- changer In_progress à to do
 
 
 EN COURS :
-- changer In_progress à TODO
 
 BLOQUE:
 
