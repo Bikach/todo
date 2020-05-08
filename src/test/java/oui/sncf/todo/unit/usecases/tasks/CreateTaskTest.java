@@ -21,7 +21,7 @@ class CreateTaskTest {
 
     @Test
     void should_return_a_new_task_that_contain_a_name_without_prefix(){
-        createTask.byName(PREFIX_IS_NOT_PRESENT, "ouigo");
+        createTask.by(PREFIX_IS_NOT_PRESENT, "ouigo");
         Optional<TaskDto> optionalTaskDto = taskRepository.getByName("ouigo");
 
         assertThat(optionalTaskDto)
@@ -37,7 +37,7 @@ class CreateTaskTest {
 
     @Test
     void should_return_a_new_task_that_contain_a_name_with_prefix(){
-        createTask.byName(Optional.of("prefix"),"ouigo");
+        createTask.by(Optional.of("prefix"),"ouigo");
         Optional<TaskDto> optionalTaskDto  = taskRepository.getByName("prefix:ouigo");
         assertThat(optionalTaskDto)
                 .isPresent()

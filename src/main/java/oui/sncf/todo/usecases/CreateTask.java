@@ -14,7 +14,7 @@ public class CreateTask {
         this.taskRepository = taskRepository;
     }
 
-    public void byName(Optional<String> prefix, final String name)  {
+    public void by(Optional<String> prefix, final String name)  {
         Task task = new Task(name);
         prefix.ifPresent(task::addPrefix);
         taskRepository.save(task);
