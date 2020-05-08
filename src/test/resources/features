@@ -12,10 +12,12 @@ FAIT :
 - mettre des optionnals pour les get et fetch et gerer les exeption coté usecase
 - supprimer prefix
 - changer In_progress à to do
+- refacto remove task
 
 
 EN COURS :
-- refacto remove task
+- empecher deux tache da'voir le meme nom
+
 
 BLOQUE:
 

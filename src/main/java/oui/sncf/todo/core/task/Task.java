@@ -18,13 +18,16 @@ public class Task {
     }
 
     public void changeStatus(TaskStatus newStatus) {
-        // todo validate status
         this.status = newStatus;
     }
 
     public void changeName(String newName) {
         // todo validate name
         this.name = newName;
+    }
+
+    public void alreadyExist() {
+        throw new TaskAlreadyExistException("The task is already exist.");
     }
 
     public void isAlreadyInProgress() {
