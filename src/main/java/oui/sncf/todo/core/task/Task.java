@@ -64,12 +64,4 @@ public class Task {
         return Objects.hash(name, prefix);
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "name='" + name + '\'' +
-                ", prefix='" + prefix + '\'' +
-                ", status=" + status +
-                '}';
-    }
 }

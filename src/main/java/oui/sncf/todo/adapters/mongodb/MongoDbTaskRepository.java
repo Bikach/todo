@@ -6,9 +6,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Repository;
 import oui.sncf.todo.adapters.dtos.TaskDto;
-import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.port.TaskRepository;
-import oui.sncf.todo.core.task.TaskDoesNotExistException;
+import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.LinkedHashSet;

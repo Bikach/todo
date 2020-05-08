@@ -21,14 +21,6 @@ public class TaskDto {
         this.status = status;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
     public String getName() {
         return name;
     }
@@ -49,14 +41,5 @@ public class TaskDto {
     @Override
     public int hashCode() {
         return Objects.hash(name, prefix);
-    }
-
-    @Override
-    public String toString() {
-        return "TaskDto{" +
-                "name='" + name + '\'' +
-                ", prefix='" + prefix + '\'' +
-                ", status=" + status +
-                '}';
     }
 }

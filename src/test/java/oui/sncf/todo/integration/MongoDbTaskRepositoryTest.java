@@ -1,4 +1,4 @@
-package oui.sncf.todo.unit.integration;
+package oui.sncf.todo.integration;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
