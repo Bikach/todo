@@ -47,24 +47,19 @@ public class MongoDbTaskRepository implements TaskRepository {
     @Override
     public Optional<TaskDto> getByName(String taskName) {
         Query query = Query.query(Criteria.where(NAME_CRITERIA).is(taskName));
-        //return getTaskDtoBy(query);
-        //TODO
-        return Optional.empty();
+        return getTaskDtoBy(query);
     }
 
     @Override
-    public TaskDto getByPrefix(String prefix) {
+    public Optional<TaskDto> getByPrefix(String prefix) {
         Query query = Query.query(Criteria.where(PREFIX_CRITERIA).is(prefix));
         return getTaskDtoBy(query);    }
 
-    private TaskDto getTaskDtoBy(Query query) {
+    private Optional<TaskDto> getTaskDtoBy(Query query) {
         return mongoTemplate
                 .find(query, TaskDto.class)
                 .stream()
-                .findAny()
-                .orElseThrow(
-                        () -> new TaskDoesNotExistException(TASK_DOES_NOT_EXIST_EXCEPTION_MESSAGE)
-                );
+                .findAny();
     }
 
     @Override

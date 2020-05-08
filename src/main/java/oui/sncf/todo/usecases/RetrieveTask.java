@@ -4,16 +4,23 @@ import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
 
-public class RetrieveTaskByName {
+public class RetrieveTask {
 
     private final TaskRepository taskRepository;
 
-    public RetrieveTaskByName(final TaskRepository taskRepository) {
+    public RetrieveTask(final TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
-    public TaskDto retrieve(final String nameTask){
+    public TaskDto byName(final String nameTask){
         return taskRepository.getByName(nameTask)
+                .orElseThrow(
+                        () -> new TaskDoesNotExistException("The Task doesn't exist.")
+                );
+    }
+
+    public TaskDto byPrefix(final String prefix){
+        return taskRepository.getByPrefix(prefix)
                 .orElseThrow(
                         () -> new TaskDoesNotExistException("The Task doesn't exist.")
                 );

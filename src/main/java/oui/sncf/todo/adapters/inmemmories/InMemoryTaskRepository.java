@@ -33,12 +33,11 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public TaskDto getByPrefix(String prefix) {
+    public Optional<TaskDto> getByPrefix(String prefix) {
         return tasks.stream()
                 .filter(task -> task.getPrefix().equals(prefix))
                 .map(task ->  new TaskDto(task.getPrefix(), task.getName(), task.getStatus()))
-                .findFirst()
-                .orElse(null);
+                .findFirst();
     }
 
     @Override

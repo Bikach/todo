@@ -67,6 +67,7 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_return_a_task_using_his_name(){
+        //TODO
         TaskDto taskDto = taskRepository.getByName("task 2").get();
         assertThat(taskDto).isEqualTo(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS));
     }
@@ -80,7 +81,8 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_return_a_task_using_his_prefix(){
-        TaskDto taskDto = taskRepository.getByPrefix("manger");
+        //TODO
+        TaskDto taskDto = taskRepository.getByPrefix("manger").get();
         assertThat(taskDto).isEqualTo(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS));
     }
 

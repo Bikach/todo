@@ -24,7 +24,8 @@ class CreateTaskTest {
     @Test
     void should_return_a_new_task_that_contain_a_name_with_prefix(){
         createTask.by("prefix","ouigo");
-        TaskDto actualTask = taskRepository.getByPrefix("prefix");
+        //TODO
+        TaskDto actualTask = taskRepository.getByPrefix("prefix").get();
         assertThat(actualTask.getName()).isEqualTo("prefix:ouigo");
     }
 
