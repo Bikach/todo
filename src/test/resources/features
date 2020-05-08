@@ -10,15 +10,15 @@ FAIT :
 - validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 - Pouvoir renommer une tache
 - mettre des optionnals pour les get et fetch et gerer les exeption coté usecase
+- supprimer prefix
 
 
 EN COURS :
-- supprimer prefix
+- changer In_progress à TODO
 
 BLOQUE:
 
 A FAIRE :
-- changer In_progress à TODO
 - pouvoir ordonner les taches
 - toute ihm possible : http, console
 

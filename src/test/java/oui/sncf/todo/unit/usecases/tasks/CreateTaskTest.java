@@ -27,7 +27,7 @@ class CreateTaskTest {
                 .isEqualTo(
                         Optional.of(new TaskDtoBuilder()
                                 .name("ouigo")
-                                .status(TaskStatus.IN_PROGRESS)
+                                .status(TaskStatus.TODO)
                                 .build()
                         )
                 );

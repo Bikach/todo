@@ -9,7 +9,7 @@ public class Task {
 
     public Task(String name) {
         this.name = name;
-        this.status = TaskStatus.IN_PROGRESS;
+        this.status = TaskStatus.TODO;
     }
 
     public Task(final String name, final TaskStatus status){
@@ -28,8 +28,8 @@ public class Task {
     }
 
     public void isAlreadyInProgress() {
-        if(this.status == TaskStatus.IN_PROGRESS)
-            throw new TaskAlwaysInProgressException("The task is already in progress");
+        if(this.status == TaskStatus.TODO)
+            throw new TaskAlwaysTodoException("The task is already in progress");
     }
 
     public String getName() {

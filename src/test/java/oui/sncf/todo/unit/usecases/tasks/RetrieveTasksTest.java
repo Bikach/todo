@@ -38,10 +38,10 @@ public class RetrieveTasksTest {
         Set<TaskDto> tasks = retrieveTasks.retrieve(Optional.empty());
         assertThat(tasks.toArray())
                 .containsExactly(
-                        new TaskDtoBuilder().name("task 1").status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 2").status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 1").status(TaskStatus.TODO).build(),
+                        new TaskDtoBuilder().name("task 2").status(TaskStatus.TODO).build(),
                         new TaskDtoBuilder().name("task 3").status(TaskStatus.DONE).build(),
-                        new TaskDtoBuilder().name("task 4").status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 4").status(TaskStatus.TODO).build(),
                         new TaskDtoBuilder().name("task 5").status(TaskStatus.DONE).build()
                 );
     }
@@ -59,12 +59,12 @@ public class RetrieveTasksTest {
 
     @Test
     void should_only_return_in_progress_tasks(){
-        Set<TaskDto> inProgressFilteredTasks = retrieveTasks.retrieve(Optional.of(TaskStatus.IN_PROGRESS));
+        Set<TaskDto> inProgressFilteredTasks = retrieveTasks.retrieve(Optional.of(TaskStatus.TODO));
         assertThat(inProgressFilteredTasks.toArray())
                 .containsExactly(
-                        new TaskDtoBuilder().name("task 1").status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 2").status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 4").status(TaskStatus.IN_PROGRESS).build()
+                        new TaskDtoBuilder().name("task 1").status(TaskStatus.TODO).build(),
+                        new TaskDtoBuilder().name("task 2").status(TaskStatus.TODO).build(),
+                        new TaskDtoBuilder().name("task 4").status(TaskStatus.TODO).build()
                 );
     }
 

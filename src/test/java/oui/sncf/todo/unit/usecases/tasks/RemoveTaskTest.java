@@ -5,7 +5,7 @@ import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
 import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskAlwaysInProgressException;
+import oui.sncf.todo.core.task.TaskAlwaysTodoException;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.unit.builders.TaskDtoBuilder;
@@ -39,11 +39,11 @@ public class RemoveTaskTest {
 
     @Test
     void should_not_remove_a_task_that_have_in_progress_status(){
-        Task task = new Task("ouigo", TaskStatus.IN_PROGRESS);
+        Task task = new Task("ouigo", TaskStatus.TODO);
         taskRepository.save(task);
 
         assertThatThrownBy(() -> removeTask.by(task.getName()))
-                .isInstanceOf(TaskAlwaysInProgressException.class)
+                .isInstanceOf(TaskAlwaysTodoException.class)
                 .hasMessage("The task is already in progress");
     }
 

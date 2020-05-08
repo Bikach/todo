@@ -33,10 +33,10 @@ public class MongoDbTaskRepositoryTest {
     @BeforeEach
     void inti(){
         mongoTemplate.dropCollection(Task.class);
-        mongoTemplate.save(new TaskDto("task 1", TaskStatus.IN_PROGRESS));
-        mongoTemplate.save(new TaskDto( "task 2", TaskStatus.IN_PROGRESS));
+        mongoTemplate.save(new TaskDto("task 1", TaskStatus.TODO));
+        mongoTemplate.save(new TaskDto( "task 2", TaskStatus.TODO));
         mongoTemplate.save(new TaskDto("task 3", TaskStatus.DONE));
-        mongoTemplate.save(new TaskDto( "task 4", TaskStatus.IN_PROGRESS));
+        mongoTemplate.save(new TaskDto( "task 4", TaskStatus.TODO));
         mongoTemplate.save(new TaskDto( "task 5", TaskStatus.DONE));
     }
 
@@ -66,7 +66,7 @@ public class MongoDbTaskRepositoryTest {
     void should_return_a_task_using_his_name(){
         Optional<TaskDto> taskDto = taskRepository.getByName("task 2");
         assertThat(taskDto)
-                .isEqualTo(Optional.of(new TaskDto( "task 2", TaskStatus.IN_PROGRESS)));
+                .isEqualTo(Optional.of(new TaskDto( "task 2", TaskStatus.TODO)));
     }
 
     @Test
@@ -75,10 +75,10 @@ public class MongoDbTaskRepositoryTest {
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto( "task 1", TaskStatus.IN_PROGRESS),
-                        new TaskDto( "task 2", TaskStatus.IN_PROGRESS),
+                        new TaskDto( "task 1", TaskStatus.TODO),
+                        new TaskDto( "task 2", TaskStatus.TODO),
                         new TaskDto("task 3", TaskStatus.DONE),
-                        new TaskDto( "task 4", TaskStatus.IN_PROGRESS),
+                        new TaskDto( "task 4", TaskStatus.TODO),
                         new TaskDto( "task 5", TaskStatus.DONE)
                 );
     }
@@ -96,13 +96,13 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_only_return_in_progress_tasks(){
-        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.of(TaskStatus.IN_PROGRESS));
+        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.of(TaskStatus.TODO));
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto("task 1", TaskStatus.IN_PROGRESS),
-                        new TaskDto( "task 2", TaskStatus.IN_PROGRESS),
-                        new TaskDto( "task 4", TaskStatus.IN_PROGRESS)
+                        new TaskDto("task 1", TaskStatus.TODO),
+                        new TaskDto( "task 2", TaskStatus.TODO),
+                        new TaskDto( "task 4", TaskStatus.TODO)
                 );
     }
 
