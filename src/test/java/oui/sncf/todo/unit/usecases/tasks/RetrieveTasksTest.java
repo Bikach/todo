@@ -38,11 +38,11 @@ public class RetrieveTasksTest {
         Set<TaskDto> tasks = retrieveTasks.retrieve(Optional.empty());
         assertThat(tasks.toArray())
                 .containsExactly(
-                        new TaskDtoBuilder().name("task 1").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 2").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 3").prefix(NO_PREFIX).status(TaskStatus.DONE).build(),
-                        new TaskDtoBuilder().name("task 4").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 5").prefix(NO_PREFIX).status(TaskStatus.DONE).build()
+                        new TaskDtoBuilder().name("task 1").status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 2").status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 3").status(TaskStatus.DONE).build(),
+                        new TaskDtoBuilder().name("task 4").status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 5").status(TaskStatus.DONE).build()
                 );
     }
 
@@ -52,8 +52,8 @@ public class RetrieveTasksTest {
         Set<TaskDto> doneStatusFilteredTasks = retrieveTasks.retrieve(Optional.of(TaskStatus.DONE));
         assertThat(doneStatusFilteredTasks.toArray())
                 .containsExactly(
-                        new TaskDtoBuilder().name("task 3").prefix(NO_PREFIX).status(TaskStatus.DONE).build(),
-                        new TaskDtoBuilder().name("task 5").prefix(NO_PREFIX).status(TaskStatus.DONE).build()
+                        new TaskDtoBuilder().name("task 3").status(TaskStatus.DONE).build(),
+                        new TaskDtoBuilder().name("task 5").status(TaskStatus.DONE).build()
                 );
     }
 
@@ -62,9 +62,9 @@ public class RetrieveTasksTest {
         Set<TaskDto> inProgressFilteredTasks = retrieveTasks.retrieve(Optional.of(TaskStatus.IN_PROGRESS));
         assertThat(inProgressFilteredTasks.toArray())
                 .containsExactly(
-                        new TaskDtoBuilder().name("task 1").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 2").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
-                        new TaskDtoBuilder().name("task 4").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build()
+                        new TaskDtoBuilder().name("task 1").status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 2").status(TaskStatus.IN_PROGRESS).build(),
+                        new TaskDtoBuilder().name("task 4").status(TaskStatus.IN_PROGRESS).build()
                 );
     }
 

@@ -24,8 +24,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("test")
 public class MongoDbTaskRepositoryTest {
 
-    private static final String NO_PREFIX = "";
-
     @Autowired
     private  MongoTemplate mongoTemplate;
 
@@ -35,11 +33,11 @@ public class MongoDbTaskRepositoryTest {
     @BeforeEach
     void inti(){
         mongoTemplate.dropCollection(Task.class);
-        mongoTemplate.save(new TaskDto("", "task 1", TaskStatus.IN_PROGRESS));
-        mongoTemplate.save(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS));
-        mongoTemplate.save(new TaskDto("","task 3", TaskStatus.DONE));
-        mongoTemplate.save(new TaskDto("", "task 4", TaskStatus.IN_PROGRESS));
-        mongoTemplate.save(new TaskDto("cinema", "task 5", TaskStatus.DONE));
+        mongoTemplate.save(new TaskDto("task 1", TaskStatus.IN_PROGRESS));
+        mongoTemplate.save(new TaskDto( "task 2", TaskStatus.IN_PROGRESS));
+        mongoTemplate.save(new TaskDto("task 3", TaskStatus.DONE));
+        mongoTemplate.save(new TaskDto( "task 4", TaskStatus.IN_PROGRESS));
+        mongoTemplate.save(new TaskDto( "task 5", TaskStatus.DONE));
     }
 
     @Test
@@ -48,7 +46,7 @@ public class MongoDbTaskRepositoryTest {
         taskRepository.save(task);
 
         List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
-        TaskDto taskDto = new TaskDto(task.getPrefix(), task.getName(), task.getStatus());
+        TaskDto taskDto = new TaskDto(task.getName(), task.getStatus());
 
         assertThat(tasksFromDB).contains(taskDto);
     }
@@ -59,7 +57,7 @@ public class MongoDbTaskRepositoryTest {
         taskRepository.remove(task);
 
         List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
-        TaskDto taskDto = new TaskDto(task.getPrefix(), task.getName(), task.getStatus());
+        TaskDto taskDto = new TaskDto(task.getName(), task.getStatus());
 
         assertThat(tasksFromDB).doesNotContain(taskDto);
     }
@@ -68,14 +66,7 @@ public class MongoDbTaskRepositoryTest {
     void should_return_a_task_using_his_name(){
         Optional<TaskDto> taskDto = taskRepository.getByName("task 2");
         assertThat(taskDto)
-                .isEqualTo(Optional.of(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS)));
-    }
-
-    @Test
-    void should_return_a_task_using_his_prefix(){
-        Optional<TaskDto> taskDto = taskRepository.getByPrefix("manger");
-        assertThat(taskDto)
-                .isEqualTo(Optional.of(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS)));
+                .isEqualTo(Optional.of(new TaskDto( "task 2", TaskStatus.IN_PROGRESS)));
     }
 
     @Test
@@ -84,11 +75,11 @@ public class MongoDbTaskRepositoryTest {
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto("", "task 1", TaskStatus.IN_PROGRESS),
-                        new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS),
-                        new TaskDto("","task 3", TaskStatus.DONE),
-                        new TaskDto("", "task 4", TaskStatus.IN_PROGRESS),
-                        new TaskDto("cinema", "task 5", TaskStatus.DONE)
+                        new TaskDto( "task 1", TaskStatus.IN_PROGRESS),
+                        new TaskDto( "task 2", TaskStatus.IN_PROGRESS),
+                        new TaskDto("task 3", TaskStatus.DONE),
+                        new TaskDto( "task 4", TaskStatus.IN_PROGRESS),
+                        new TaskDto( "task 5", TaskStatus.DONE)
                 );
     }
 
@@ -98,8 +89,8 @@ public class MongoDbTaskRepositoryTest {
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto("","task 3", TaskStatus.DONE),
-                        new TaskDto("cinema", "task 5", TaskStatus.DONE)
+                        new TaskDto("task 3", TaskStatus.DONE),
+                        new TaskDto( "task 5", TaskStatus.DONE)
                 );
     }
 
@@ -109,9 +100,9 @@ public class MongoDbTaskRepositoryTest {
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto("", "task 1", TaskStatus.IN_PROGRESS),
-                        new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS),
-                        new TaskDto("", "task 4", TaskStatus.IN_PROGRESS)
+                        new TaskDto("task 1", TaskStatus.IN_PROGRESS),
+                        new TaskDto( "task 2", TaskStatus.IN_PROGRESS),
+                        new TaskDto( "task 4", TaskStatus.IN_PROGRESS)
                 );
     }
 

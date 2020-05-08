@@ -21,8 +21,6 @@ public class RemoveTaskTest {
     private final TaskRepository taskRepository = new InMemoryTaskRepository();
     private final RemoveTask removeTask = new RemoveTask(taskRepository);
 
-    private static final TaskStatus NO_FILTER = null;
-
     @Test
     void should_removed_task(){
         Task task = new Task("ouigo", TaskStatus.DONE);

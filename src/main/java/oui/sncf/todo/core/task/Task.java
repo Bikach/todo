@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Task {
 
     private String name;
-    private String prefix = "";
     private TaskStatus status;
 
     public Task(String name) {
@@ -33,11 +32,6 @@ public class Task {
             throw new TaskAlwaysInProgressException("The task is already in progress");
     }
 
-    public void addPrefix(String prefix) {
-        this.prefix = prefix;
-        this.name = prefix +":"+ this.name;
-    }
-
     public String getName() {
         return name;
     }
@@ -46,22 +40,16 @@ public class Task {
         return status;
     }
 
-    public String getPrefix() {
-        return prefix;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(name, task.name) &&
-                Objects.equals(prefix, task.prefix);
+        return Objects.equals(name, task.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, prefix);
+        return Objects.hash(name);
     }
-
 }

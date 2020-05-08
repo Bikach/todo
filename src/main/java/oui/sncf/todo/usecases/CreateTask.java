@@ -3,8 +3,6 @@ package oui.sncf.todo.usecases;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 
-import java.util.Optional;
-
 
 public class CreateTask {
 
@@ -14,9 +12,9 @@ public class CreateTask {
         this.taskRepository = taskRepository;
     }
 
-    public void by(Optional<String> prefix, final String name)  {
+    public void by(final String name)  {
         Task task = new Task(name);
-        prefix.ifPresent(task::addPrefix);
+        // TODO validate name
         taskRepository.save(task);
     }
 }

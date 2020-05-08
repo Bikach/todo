@@ -9,20 +9,16 @@ FAIT :
 - refactor les usecase pour qu'ils retournent des dto
 - validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 - Pouvoir renommer une tache
-- le nom doit suivre un modèle : :préfixe: nom (préfixe : texte libre sans espace, nom :texte libre)
-detail :Optionnel, Concaténé avec le nom, separé par : Sans espace , Peut être modifié
-- pouvoir filter les prefixes identiques
-- revoir le prefix
 - mettre des optionnals pour les get et fetch et gerer les exeption coté usecase
 
 
 EN COURS :
-- pouvoir renomer le prefix
+- supprimer prefix
 
 BLOQUE:
 
 A FAIRE :
-
+- changer In_progress à TODO
 - pouvoir ordonner les taches
 - toute ihm possible : http, console
 

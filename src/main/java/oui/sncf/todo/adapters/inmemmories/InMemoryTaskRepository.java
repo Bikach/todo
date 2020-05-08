@@ -28,16 +28,8 @@ public class InMemoryTaskRepository implements TaskRepository {
     public Optional<TaskDto> getByName(String name) {
         return tasks.stream()
                 .filter(task -> task.getName().equals(name))
-                .map(task ->  new TaskDto(task.getPrefix(), task.getName(), task.getStatus()))
+                .map(task ->  new TaskDto(task.getName(), task.getStatus()))
                 .findAny();
-    }
-
-    @Override
-    public Optional<TaskDto> getByPrefix(String prefix) {
-        return tasks.stream()
-                .filter(task -> task.getPrefix().equals(prefix))
-                .map(task ->  new TaskDto(task.getPrefix(), task.getName(), task.getStatus()))
-                .findFirst();
     }
 
     @Override
@@ -47,14 +39,14 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     private Set<TaskDto> unfilteredTasks(){
         return tasks.stream()
-                .map(task ->  new TaskDto(task.getPrefix(), task.getName(), task.getStatus()))
+                .map(task ->  new TaskDto(task.getName(), task.getStatus()))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     private Set<TaskDto> filteredTasks(TaskStatus status){
         return tasks.stream()
                 .filter(task -> task.getStatus().equals(status))
-                .map(task ->  new TaskDto(task.getPrefix(), task.getName(), task.getStatus()))
+                .map(task ->  new TaskDto(task.getName(), task.getStatus()))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }

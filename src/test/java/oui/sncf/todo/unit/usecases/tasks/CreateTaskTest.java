@@ -17,11 +17,9 @@ class CreateTaskTest {
     private final TaskRepository taskRepository = new InMemoryTaskRepository();;
     private final CreateTask createTask = new CreateTask(taskRepository);
 
-    private static final Optional<String> PREFIX_IS_NOT_PRESENT = Optional.empty();
-
     @Test
     void should_return_a_new_task_that_contain_a_name_without_prefix(){
-        createTask.by(PREFIX_IS_NOT_PRESENT, "ouigo");
+        createTask.by("ouigo");
         Optional<TaskDto> optionalTaskDto = taskRepository.getByName("ouigo");
 
         assertThat(optionalTaskDto)
@@ -34,22 +32,4 @@ class CreateTaskTest {
                         )
                 );
     }
-
-    @Test
-    void should_return_a_new_task_that_contain_a_name_with_prefix(){
-        createTask.by(Optional.of("prefix"),"ouigo");
-        Optional<TaskDto> optionalTaskDto  = taskRepository.getByName("prefix:ouigo");
-        assertThat(optionalTaskDto)
-                .isPresent()
-                .isEqualTo(
-                        Optional.of(new TaskDtoBuilder()
-                                .prefix("prefix")
-                                .name("prefix:ouigo")
-                                .status(TaskStatus.IN_PROGRESS)
-                                .build()
-                        )
-                );    }
-
-
-
 }

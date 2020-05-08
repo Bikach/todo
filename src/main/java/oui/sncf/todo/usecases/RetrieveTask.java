@@ -18,11 +18,4 @@ public class RetrieveTask {
                         () -> new TaskDoesNotExistException("The Task doesn't exist.")
                 );
     }
-
-    public TaskDto byPrefix(final String prefix){
-        return taskRepository.getByPrefix(prefix)
-                .orElseThrow(
-                        () -> new TaskDoesNotExistException("The Task doesn't exist.")
-                );
-    }
 }

@@ -12,11 +12,9 @@ public class TaskDto {
     @Id
     private String id;
     private String name;
-    private String prefix;
     private TaskStatus status;
 
-    public TaskDto(String prefix, String name, TaskStatus status) {
-        this.prefix = prefix;
+    public TaskDto(String name, TaskStatus status) {
         this.name = name;
         this.status = status;
     }
@@ -34,12 +32,11 @@ public class TaskDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TaskDto taskDto = (TaskDto) o;
-        return Objects.equals(name, taskDto.name) &&
-                Objects.equals(prefix, taskDto.prefix);
+        return Objects.equals(name, taskDto.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, prefix);
+        return Objects.hash(name);
     }
 }

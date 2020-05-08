@@ -38,28 +38,4 @@ public class RetrieveTaskTest {
                 .isInstanceOf(TaskDoesNotExistException.class)
                 .hasMessage("The Task doesn't exist.");
     }
-
-    @Test
-    void should_return_a_task_by_prefix(){
-        Task expectedTask = new Task("ouigo");
-        expectedTask.addPrefix("prefix");
-        taskRepository.save(expectedTask);
-
-        TaskDto actualTask = retrieveTask.byPrefix("prefix");
-
-        assertThat(actualTask).isEqualTo(
-                new TaskDtoBuilder()
-                        .prefix(expectedTask.getPrefix())
-                        .name(expectedTask.getName())
-                        .status(expectedTask.getStatus())
-                        .build()
-        );
-    }
-
-    @Test
-    void should_not_return_a_task_when_the_prefix_does_not_exist(){
-        assertThatThrownBy(() -> retrieveTask.byPrefix("bad prefix"))
-                .isInstanceOf(TaskDoesNotExistException.class)
-                .hasMessage("The Task doesn't exist.");
-    }
 }

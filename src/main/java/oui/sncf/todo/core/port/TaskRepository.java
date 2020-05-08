@@ -12,6 +12,5 @@ public interface TaskRepository {
     void save(Task task);
     void remove(Task task);
     Optional<TaskDto> getByName(String name);
-    Optional<TaskDto> getByPrefix(String prefix);
     Set<TaskDto> fetch(Optional<TaskStatus> status);
 }

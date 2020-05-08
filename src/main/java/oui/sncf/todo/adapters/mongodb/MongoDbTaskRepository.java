@@ -21,7 +21,6 @@ public class MongoDbTaskRepository implements TaskRepository {
 
     public static final String COLLECTION_NAME = "task";
     public static final String NAME_CRITERIA = "name";
-    public static final String PREFIX_CRITERIA = "prefix";
 
     private MongoTemplate mongoTemplate;
 
@@ -31,13 +30,13 @@ public class MongoDbTaskRepository implements TaskRepository {
 
     @Override
     public void save(Task task) {
-        TaskDto taskDto = new TaskDto(task.getPrefix(),task.getName(), task.getStatus());
+        TaskDto taskDto = new TaskDto(task.getName(), task.getStatus());
         mongoTemplate.save(taskDto, COLLECTION_NAME);
     }
 
     @Override
     public void remove(Task task) {
-        TaskDto taskDto = new TaskDto(task.getPrefix(), task.getName(), task.getStatus());
+        TaskDto taskDto = new TaskDto(task.getName(), task.getStatus());
         Query query = Query.query(Criteria.where(NAME_CRITERIA).is(taskDto.getName()));
         mongoTemplate.remove(query, TaskDto.class, COLLECTION_NAME);
     }
@@ -45,15 +44,6 @@ public class MongoDbTaskRepository implements TaskRepository {
     @Override
     public Optional<TaskDto> getByName(String taskName) {
         Query query = Query.query(Criteria.where(NAME_CRITERIA).is(taskName));
-        return getTaskDtoBy(query);
-    }
-
-    @Override
-    public Optional<TaskDto> getByPrefix(String prefix) {
-        Query query = Query.query(Criteria.where(PREFIX_CRITERIA).is(prefix));
-        return getTaskDtoBy(query);    }
-
-    private Optional<TaskDto> getTaskDtoBy(Query query) {
         return mongoTemplate
                 .find(query, TaskDto.class)
                 .stream()
