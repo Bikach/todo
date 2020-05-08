@@ -11,7 +11,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.adapters.mongodb.MongoDbTaskRepository;
 import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -68,16 +66,16 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_return_a_task_using_his_name(){
-        //TODO
-        TaskDto taskDto = taskRepository.getByName("task 2").get();
-        assertThat(taskDto).isEqualTo(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS));
+        Optional<TaskDto> taskDto = taskRepository.getByName("task 2");
+        assertThat(taskDto)
+                .isEqualTo(Optional.of(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS)));
     }
 
     @Test
     void should_return_a_task_using_his_prefix(){
-        //TODO
-        TaskDto taskDto = taskRepository.getByPrefix("manger").get();
-        assertThat(taskDto).isEqualTo(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS));
+        Optional<TaskDto> taskDto = taskRepository.getByPrefix("manger");
+        assertThat(taskDto)
+                .isEqualTo(Optional.of(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS)));
     }
 
     @Test

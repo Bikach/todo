@@ -18,16 +18,16 @@ detail :
     Peut être modifié
 - pouvoir filter les prefixes identiques
 - revoir le prefix
+- mettre des optionnals pour les get et fetch et gerer les exeption coté usecase
 
 
 EN COURS :
-- mettre des optionnals pour les get et fetch et gerer les exeption coté usecase
+- TODO
 
 BLOQUE:
 
 A FAIRE :
 
-- TODO
 - pouvoir renomer le prefix
 - pouvoir ordonner les taches
 - toute ihm possible : http, console
