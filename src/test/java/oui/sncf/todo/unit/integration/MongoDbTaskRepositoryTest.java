@@ -15,6 +15,7 @@ import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -95,7 +96,7 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_return_tasks_without_filter(){
-        Set<TaskDto> tasksFromDB = taskRepository.fetch(null);
+        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.empty());
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
@@ -109,7 +110,7 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_only_return_done_tasks(){
-        Set<TaskDto> tasksFromDB = taskRepository.fetch(TaskStatus.DONE);
+        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.of(TaskStatus.DONE));
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
@@ -120,7 +121,7 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_only_return_in_progress_tasks(){
-        Set<TaskDto> tasksFromDB = taskRepository.fetch(TaskStatus.IN_PROGRESS);
+        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.of(TaskStatus.IN_PROGRESS));
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(

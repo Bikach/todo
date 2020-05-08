@@ -23,7 +23,6 @@ public class MongoDbTaskRepository implements TaskRepository {
     public static final String COLLECTION_NAME = "task";
     public static final String NAME_CRITERIA = "name";
     public static final String PREFIX_CRITERIA = "prefix";
-    public static final String TASK_DOES_NOT_EXIST_EXCEPTION_MESSAGE = "The Task doesn't exist.";
 
     private MongoTemplate mongoTemplate;
 
@@ -63,12 +62,12 @@ public class MongoDbTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Set<TaskDto> fetch(TaskStatus status) {
-        if(status == null)
-            return new LinkedHashSet<>(mongoTemplate.findAll(TaskDto.class));
-        return mongoTemplate.findAll(TaskDto.class)
+    public Set<TaskDto> fetch(Optional<TaskStatus> status) {
+        return new LinkedHashSet<>(mongoTemplate.findAll(TaskDto.class));
+        //TODO
+        /*return mongoTemplate.findAll(TaskDto.class)
                 .stream()
                 .filter(taskDto -> taskDto.getStatus().equals(status))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(Collectors.toCollection(LinkedHashSet::new));*/
     }
 }

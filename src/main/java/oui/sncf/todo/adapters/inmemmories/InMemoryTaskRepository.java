@@ -41,9 +41,8 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Set<TaskDto> fetch(TaskStatus status) {
-        return (status == null) ? unfilteredTasks(): filteredTasks(status);
-
+    public Set<TaskDto> fetch(Optional<TaskStatus> status) {
+        return status.isPresent() ? filteredTasks(status.get()) : unfilteredTasks();
     }
 
     private Set<TaskDto> unfilteredTasks(){

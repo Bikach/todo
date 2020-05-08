@@ -17,6 +17,7 @@ detail :
     Sans espace
     Peut être modifié
 - pouvoir filter les prefixes identiques
+- revoir le prefix
 
 
 EN COURS :
@@ -27,7 +28,6 @@ BLOQUE:
 A FAIRE :
 
 - TODO
-- revoir le prefix
 - pouvoir renomer le prefix
 - pouvoir ordonner les taches
 - toute ihm possible : http, console

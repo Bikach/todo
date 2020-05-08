@@ -4,6 +4,7 @@ import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.TaskStatus;
 
+import java.util.Optional;
 import java.util.Set;
 
 public class RetrieveTasks {
@@ -14,7 +15,7 @@ public class RetrieveTasks {
         this.taskRepository = taskRepository;
     }
 
-    public Set<TaskDto> retrieve(final TaskStatus status){
+    public Set<TaskDto> retrieve(Optional<TaskStatus> status){
         return taskRepository.fetch(status);
     }
 }

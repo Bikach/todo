@@ -10,6 +10,7 @@ import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.RemoveTask;
 
+import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
@@ -28,7 +29,7 @@ public class RemoveTaskTest {
 
         removeTask.by(task.getName());
 
-        Set<TaskDto> tasks = taskRepository.fetch(NO_FILTER);
+        Set<TaskDto> tasks = taskRepository.fetch(Optional.empty());
         TaskDto taskDto =  new TaskDtoBuilder()
                 .name(task.getName())
                 .status(task.getStatus())

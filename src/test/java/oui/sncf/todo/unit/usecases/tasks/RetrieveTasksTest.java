@@ -10,6 +10,7 @@ import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.RetrieveTasks;
 
+import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +35,7 @@ public class RetrieveTasksTest {
 
     @Test
     void should_return_tasks_without_filter(){
-        Set<TaskDto> tasks = retrieveTasks.retrieve(null);
+        Set<TaskDto> tasks = retrieveTasks.retrieve(Optional.empty());
         assertThat(tasks.toArray())
                 .containsExactly(
                         new TaskDtoBuilder().name("task 1").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
@@ -48,7 +49,7 @@ public class RetrieveTasksTest {
 
     @Test
     void should_only_return_done_tasks(){
-        Set<TaskDto> doneStatusFilteredTasks = retrieveTasks.retrieve(TaskStatus.DONE);
+        Set<TaskDto> doneStatusFilteredTasks = retrieveTasks.retrieve(Optional.of(TaskStatus.DONE));
         assertThat(doneStatusFilteredTasks.toArray())
                 .containsExactly(
                         new TaskDtoBuilder().name("task 3").prefix(NO_PREFIX).status(TaskStatus.DONE).build(),
@@ -58,7 +59,7 @@ public class RetrieveTasksTest {
 
     @Test
     void should_only_return_in_progress_tasks(){
-        Set<TaskDto> inProgressFilteredTasks = retrieveTasks.retrieve(TaskStatus.IN_PROGRESS);
+        Set<TaskDto> inProgressFilteredTasks = retrieveTasks.retrieve(Optional.of(TaskStatus.IN_PROGRESS));
         assertThat(inProgressFilteredTasks.toArray())
                 .containsExactly(
                         new TaskDtoBuilder().name("task 1").prefix(NO_PREFIX).status(TaskStatus.IN_PROGRESS).build(),
