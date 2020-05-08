@@ -6,6 +6,7 @@ import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskAlwaysInProgressException;
+import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.RemoveTask;
@@ -46,5 +47,12 @@ public class RemoveTaskTest {
         assertThatThrownBy(() -> removeTask.by(task.getName()))
                 .isInstanceOf(TaskAlwaysInProgressException.class)
                 .hasMessage("The task is already in progress");
+    }
+
+    @Test
+    void should_not_remove_a_task_that_does_not_exist(){
+        assertThatThrownBy(() -> removeTask.by("bad name"))
+                .isInstanceOf(TaskDoesNotExistException.class)
+                .hasMessage("The Task doesn't exist.");
     }
 }
