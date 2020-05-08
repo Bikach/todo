@@ -1,6 +1,5 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
@@ -14,14 +13,14 @@ public class RemoveTask {
     }
 
     public void by(final String taskName) {
-        TaskDto taskDto = getTaskDto(taskName);
-        Task task = new Task(taskDto.getName(), taskDto.getStatus());
+        Task task = getTask(taskName);
         task.isAlreadyInProgress();
         taskRepository.remove(task);
     }
 
-    private TaskDto getTaskDto(String nameTask){
+    private Task getTask(String nameTask){
         return taskRepository.getByName(nameTask)
+                .map(taskDto -> new Task(taskDto.getName(), taskDto.getStatus()))
                 .orElseThrow(() -> new TaskDoesNotExistException("The Task doesn't exist."));
     }
 }
