@@ -10,25 +10,19 @@ FAIT :
 - validation de supresion de tache (ne pas pouvoir suprimer une tache en cours)
 - Pouvoir renommer une tache
 - le nom doit suivre un modèle : :préfixe: nom (préfixe : texte libre sans espace, nom :texte libre)
-detail :
-    Optionnel
-    Concaténé avec le nom
-    separé par :
-    Sans espace
-    Peut être modifié
+detail :Optionnel, Concaténé avec le nom, separé par : Sans espace , Peut être modifié
 - pouvoir filter les prefixes identiques
 - revoir le prefix
 - mettre des optionnals pour les get et fetch et gerer les exeption coté usecase
 
 
 EN COURS :
-- TODO
+- pouvoir renomer le prefix
 
 BLOQUE:
 
 A FAIRE :
 
-- pouvoir renomer le prefix
 - pouvoir ordonner les taches
 - toute ihm possible : http, console
 
