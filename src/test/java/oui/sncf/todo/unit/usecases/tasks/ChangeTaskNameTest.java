@@ -22,7 +22,6 @@ public class ChangeTaskNameTest {
 
         changeTaskName.of(task, "nongo");
 
-        //TODO
         TaskDto taskDto = taskRepository.getByName("nongo").get();
         assertThat(taskDto.getName()).isEqualTo("nongo");
     }
