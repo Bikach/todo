@@ -63,11 +63,12 @@ public class MongoDbTaskRepository implements TaskRepository {
 
     @Override
     public Set<TaskDto> fetch(Optional<TaskStatus> status) {
-        return new LinkedHashSet<>(mongoTemplate.findAll(TaskDto.class));
-        //TODO
-        /*return mongoTemplate.findAll(TaskDto.class)
+        return status.map(taskStatus -> mongoTemplate.findAll(TaskDto.class)
                 .stream()
-                .filter(taskDto -> taskDto.getStatus().equals(status))
-                .collect(Collectors.toCollection(LinkedHashSet::new));*/
+                .filter(taskDto -> taskDto.getStatus().equals(taskStatus))
+                .collect(Collectors.toCollection(LinkedHashSet::new)))
+                .orElseGet(
+                        () -> new LinkedHashSet<>(mongoTemplate.findAll(TaskDto.class))
+                );
     }
 }

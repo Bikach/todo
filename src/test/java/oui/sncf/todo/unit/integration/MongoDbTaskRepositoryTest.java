@@ -74,24 +74,10 @@ public class MongoDbTaskRepositoryTest {
     }
 
     @Test
-    void should_not_return_a_task_when_the_name_does_not_exist(){
-        assertThatThrownBy(() -> taskRepository.getByName("bad name"))
-                .isInstanceOf(TaskDoesNotExistException.class)
-                .hasMessage("The Task doesn't exist.");
-    }
-
-    @Test
     void should_return_a_task_using_his_prefix(){
         //TODO
         TaskDto taskDto = taskRepository.getByPrefix("manger").get();
         assertThat(taskDto).isEqualTo(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS));
-    }
-
-    @Test
-    void should_not_return_a_task_when_the_prefix_does_not_exist(){
-        assertThatThrownBy(() -> taskRepository.getByPrefix("bad prefix"))
-                .isInstanceOf(TaskDoesNotExistException.class)
-                .hasMessage("The Task doesn't exist.");
     }
 
     @Test
