@@ -12,6 +12,7 @@ import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,9 +45,11 @@ public class MongoDbTaskRepository implements TaskRepository {
     }
 
     @Override
-    public TaskDto getByName(String taskName) {
+    public Optional<TaskDto> getByName(String taskName) {
         Query query = Query.query(Criteria.where(NAME_CRITERIA).is(taskName));
-        return getTaskDtoBy(query);
+        //return getTaskDtoBy(query);
+        //TODO
+        return Optional.empty();
     }
 
     @Override

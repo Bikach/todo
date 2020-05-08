@@ -15,8 +15,8 @@ public class BeanTasksUsesCaseFactory {
     }
 
     @Bean
-    RetrieveTask retrieveByName(){
-        return new RetrieveTask(taskRepository);
+    RetrieveTaskByName retrieveTaskByName(){
+        return new RetrieveTaskByName(taskRepository);
     }
 
     @Bean

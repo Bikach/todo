@@ -21,7 +21,8 @@ public class changeTaskStatusTest {
         taskRepository.save(task);
         changeTaskStatus.of("ouigo", TaskStatus.DONE);
 
-        TaskDto actualTask = taskRepository.getByName(task.getName());
+        //TODO
+        TaskDto actualTask = taskRepository.getByName(task.getName()).get();
 
         assertThat(new Task(actualTask.getName(), actualTask.getStatus()))
                 .isEqualTo(new Task("ouigo", TaskStatus.DONE));
@@ -33,7 +34,8 @@ public class changeTaskStatusTest {
         taskRepository.save(task);
         changeTaskStatus.of("ouigo", TaskStatus.IN_PROGRESS);
 
-        TaskDto actualTask = taskRepository.getByName(task.getName());
+        //TODO
+        TaskDto actualTask = taskRepository.getByName(task.getName()).get();
 
         assertThat(new Task(actualTask.getName(), actualTask.getStatus()))
                 .isEqualTo(new Task("ouigo", TaskStatus.IN_PROGRESS));

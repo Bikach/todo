@@ -16,7 +16,8 @@ class CreateTaskTest {
     @Test
     void should_return_a_new_task_that_contain_a_name_without_prefix(){
         createTask.by("ouigo");
-        TaskDto actualTask = taskRepository.getByName("ouigo");
+        //TODO
+        TaskDto actualTask = taskRepository.getByName("ouigo").get();
         assertThat(actualTask.getName()).isEqualTo("ouigo");
     }
 

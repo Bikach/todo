@@ -6,7 +6,7 @@ import oui.sncf.todo.core.task.TaskStatus;
 public class TaskDtoBuilder {
 
     private String name;
-    private String prefix;
+    private String prefix = "";
     private TaskStatus status;
 
     public TaskDtoBuilder() {}
@@ -21,7 +21,6 @@ public class TaskDtoBuilder {
     }
 
     public TaskDtoBuilder prefix(String prefix){
-
         this.prefix = prefix;
         return this;
     }

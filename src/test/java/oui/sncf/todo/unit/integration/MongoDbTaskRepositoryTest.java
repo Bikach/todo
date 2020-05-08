@@ -67,7 +67,7 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_return_a_task_using_his_name(){
-        TaskDto taskDto = taskRepository.getByName("task 2");
+        TaskDto taskDto = taskRepository.getByName("task 2").get();
         assertThat(taskDto).isEqualTo(new TaskDto("manger", "task 2", TaskStatus.IN_PROGRESS));
     }
 

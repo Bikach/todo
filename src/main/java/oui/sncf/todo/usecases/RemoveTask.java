@@ -13,7 +13,8 @@ public class RemoveTask {
     }
 
     public void by(final String taskName) {
-        TaskDto taskDto = taskRepository.getByName(taskName);
+        //TODO
+        TaskDto taskDto = taskRepository.getByName(taskName).get();
         Task task = new Task(taskDto.getName(), taskDto.getStatus());
         task.isAlreadyInProgress();
         taskRepository.remove(task);

@@ -6,6 +6,7 @@ import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,12 +25,11 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public TaskDto getByName(String name) {
+    public Optional<TaskDto> getByName(String name) {
         return tasks.stream()
                 .filter(task -> task.getName().equals(name))
                 .map(task ->  new TaskDto(task.getPrefix(), task.getName(), task.getStatus()))
-                .findFirst()
-                .orElse(null);
+                .findAny();
     }
 
     @Override

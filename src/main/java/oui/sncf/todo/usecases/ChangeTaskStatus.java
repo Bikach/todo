@@ -14,7 +14,8 @@ public class ChangeTaskStatus {
     }
 
     public void of(String nameTask, TaskStatus newStatus){
-        TaskDto taskDto = taskRepository.getByName(nameTask);
+        //TODO
+        TaskDto taskDto = taskRepository.getByName(nameTask).get();
         Task task = new Task(taskDto.getName(), taskDto.getStatus());
         task.changeStatus(newStatus);
         taskRepository.save(task);
