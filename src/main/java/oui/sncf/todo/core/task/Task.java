@@ -30,9 +30,9 @@ public class Task {
         throw new TaskAlreadyExistException("The task is already exist.");
     }
 
-    public void isAlreadyInProgress() {
+    public void isAlreadyTodo() {
         if(this.status == TaskStatus.TODO)
-            throw new TaskAlwaysTodoException("The task is already in progress");
+            throw new TaskAlwaysTodoException("The task is already todo");
     }
 
     public String getName() {

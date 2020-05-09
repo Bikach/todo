@@ -14,7 +14,7 @@ public class RemoveTask {
 
     public void by(final String taskName) {
         Task task = getTask(taskName);
-        task.isAlreadyInProgress();
+        task.isAlreadyTodo();
         taskRepository.remove(task);
     }
 

@@ -38,13 +38,13 @@ public class RemoveTaskTest {
     }
 
     @Test
-    void should_not_remove_a_task_that_have_in_progress_status(){
+    void should_not_remove_a_task_that_have_todo_status(){
         Task task = new Task("ouigo", TaskStatus.TODO);
         taskRepository.save(task);
 
         assertThatThrownBy(() -> removeTask.by(task.getName()))
                 .isInstanceOf(TaskAlwaysTodoException.class)
-                .hasMessage("The task is already in progress");
+                .hasMessage("The task is already todo");
     }
 
     @Test
