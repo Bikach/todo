@@ -18,11 +18,12 @@ public class Task {
     }
 
     public void changeStatus(TaskStatus newStatus) {
+        // TODO validate status ?
         this.status = newStatus;
     }
 
     public void changeName(String newName) {
-        // todo validate name
+        // todo validate name ?
         this.name = newName;
     }
 
