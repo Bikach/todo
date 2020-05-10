@@ -7,7 +7,7 @@ import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskAlreadyExistException;
 import oui.sncf.todo.core.task.TaskStatus;
-import oui.sncf.todo.unit.builders.TaskDtoBuilder;
+import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.CreateTask;
 
 import java.util.Optional;
@@ -23,12 +23,12 @@ class CreateTaskTest {
     @Test
     void should_create_a_new_task_that_contain_a_name(){
         createTask.by("ouigo");
-        Optional<TaskDto> optionalTaskDto = taskRepository.getByName("ouigo");
+        Optional<Task> optionalTask = taskRepository.getByName("ouigo");
 
-        assertThat(optionalTaskDto)
+        assertThat(optionalTask)
                 .isPresent()
                 .isEqualTo(
-                        Optional.of(new TaskDtoBuilder()
+                        Optional.of(new TaskBuilder()
                                 .name("ouigo")
                                 .status(TaskStatus.TODO)
                                 .build()

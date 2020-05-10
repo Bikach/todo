@@ -1,7 +1,7 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
 
 public class RetrieveTask {
@@ -12,7 +12,7 @@ public class RetrieveTask {
         this.taskRepository = taskRepository;
     }
 
-    public TaskDto byName(final String nameTask){
+    public Task byName(final String nameTask){
         return taskRepository.getByName(nameTask)
                 .orElseThrow(
                         () -> new TaskDoesNotExistException("The Task doesn't exist.")

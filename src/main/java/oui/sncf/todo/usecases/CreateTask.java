@@ -15,13 +15,8 @@ public class CreateTask {
     }
 
     public void by(final String name)  {
-        Optional<Task> task = getTask(name);
+        Optional<Task> task = taskRepository.getByName(name);
         task.ifPresent(Task::alreadyExist);
         taskRepository.save(new Task(name));
-    }
-
-    private Optional<Task> getTask(String nameTask){
-        return taskRepository.getByName(nameTask)
-                .map(taskDto -> new Task(taskDto.getName(), taskDto.getStatus()));
     }
 }

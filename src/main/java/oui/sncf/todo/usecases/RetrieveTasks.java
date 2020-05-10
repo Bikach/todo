@@ -1,7 +1,7 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
 
 import java.util.Optional;
@@ -15,7 +15,7 @@ public class RetrieveTasks {
         this.taskRepository = taskRepository;
     }
 
-    public Set<TaskDto> retrieve(Optional<TaskStatus> status){
+    public Set<Task> retrieve(TaskStatus status){
         return taskRepository.fetch(status);
     }
 }

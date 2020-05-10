@@ -10,10 +10,8 @@ import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
 
-import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Repository
 @EnableMongoRepositories(basePackages = "oui.sncf.todo.adapters.mongodb")
@@ -42,22 +40,28 @@ public class MongoDbTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Optional<TaskDto> getByName(String taskName) {
+    public Optional<Task> getByName(String taskName) {
         Query query = Query.query(Criteria.where(NAME_CRITERIA).is(taskName));
         return mongoTemplate
                 .find(query, TaskDto.class)
                 .stream()
+                .map(taskDto ->  new Task(taskDto.getName(), taskDto.getStatus()))
                 .findAny();
     }
 
     @Override
-    public Set<TaskDto> fetch(Optional<TaskStatus> status) {
-        return status.map(taskStatus -> mongoTemplate.findAll(TaskDto.class)
+    public Set<Task> fetch(TaskStatus status) {
+        return null;
+        // TODO
+        /*return status.map(taskStatus -> mongoTemplate.findAll(TaskDto.class)
                 .stream()
                 .filter(taskDto -> taskDto.getStatus().equals(taskStatus))
+                .map(taskDto ->  new Task(taskDto.getName(), taskDto.getStatus()))
                 .collect(Collectors.toCollection(LinkedHashSet::new)))
                 .orElseGet(
-                        () -> new LinkedHashSet<>(mongoTemplate.findAll(TaskDto.class))
+                        () -> new LinkedHashSet<Task>(mongoTemplate.findAll(TaskDto.class))
                 );
+
+         */
     }
 }

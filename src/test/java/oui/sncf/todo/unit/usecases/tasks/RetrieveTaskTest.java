@@ -7,7 +7,7 @@ import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
-import oui.sncf.todo.unit.builders.TaskDtoBuilder;
+import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.RetrieveTask;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,10 +23,10 @@ public class RetrieveTaskTest {
         Task task = new Task("ouigo");
         taskRepository.save(task);
 
-        TaskDto actualTask = retrieveTask.byName("ouigo");
+        Task actualTask = retrieveTask.byName("ouigo");
 
         assertThat(actualTask)
-                .isEqualTo(new TaskDtoBuilder()
+                .isEqualTo(new TaskBuilder()
                         .name("ouigo")
                         .status(TaskStatus.TODO)
                         .build()

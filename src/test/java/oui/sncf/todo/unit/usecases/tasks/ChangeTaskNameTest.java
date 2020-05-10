@@ -2,11 +2,9 @@ package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
-import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
-import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.ChangeTaskName;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,18 +16,11 @@ public class ChangeTaskNameTest {
 
 
     @Test
-    void should_can_change_the_task_name(){
+    void should_change_the_task_name(){
         Task task = new Task("ouigo");
-        taskRepository.save(task);
-
         changeTaskName.of(task, "nongo");
 
-        TaskDto taskDto = taskRepository.getByName("nongo").get();
-        assertThat(taskDto)
-                .isEqualTo(new TaskDtoBuilder()
-                        .name("nongo")
-                        .status(TaskStatus.TODO)
-                        .build()
-                );
+        Task actualTask = taskRepository.getByName("nongo").get();
+        assertThat(actualTask).isEqualTo(new Task("nongo", TaskStatus.TODO));
     }
 }

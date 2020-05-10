@@ -8,7 +8,7 @@ import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskAlwaysTodoException;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
-import oui.sncf.todo.unit.builders.TaskDtoBuilder;
+import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.RemoveTask;
 
 import java.util.Optional;
@@ -26,15 +26,14 @@ public class RemoveTaskTest {
         Task task = new Task("ouigo", TaskStatus.DONE);
         taskRepository.save(task);
 
-        removeTask.by(task.getName());
+        removeTask.by(task);
 
-        Set<TaskDto> tasks = taskRepository.fetch(Optional.empty());
-        TaskDto taskDto =  new TaskDtoBuilder()
-                .name("ouigo")
-                .status(TaskStatus.DONE)
-                .build();
-
-        assertThat(tasks).doesNotContain(taskDto);
+        Set<Task> tasks = taskRepository.fetch(null);
+        assertThat(tasks)
+                .doesNotContain(new TaskBuilder()
+                        .name("ouigo")
+                        .status(TaskStatus.DONE)
+                        .build());
     }
 
     @Test
@@ -42,15 +41,8 @@ public class RemoveTaskTest {
         Task task = new Task("ouigo", TaskStatus.TODO);
         taskRepository.save(task);
 
-        assertThatThrownBy(() -> removeTask.by(task.getName()))
+        assertThatThrownBy(() -> removeTask.by(task))
                 .isInstanceOf(TaskAlwaysTodoException.class)
                 .hasMessage("The task is already todo");
-    }
-
-    @Test
-    void should_not_remove_a_task_that_does_not_exist(){
-        assertThatThrownBy(() -> removeTask.by("bad name"))
-                .isInstanceOf(TaskDoesNotExistException.class)
-                .hasMessage("The Task doesn't exist.");
     }
 }
