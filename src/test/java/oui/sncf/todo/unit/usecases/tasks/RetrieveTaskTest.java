@@ -6,6 +6,7 @@ import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
+import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.RetrieveTask;
 
@@ -19,15 +20,15 @@ public class RetrieveTaskTest {
 
     @Test
     void should_return_a_task_by_name(){
-        Task expectedTask = new Task("ouigo");
-        taskRepository.save(expectedTask);
+        Task task = new Task("ouigo");
+        taskRepository.save(task);
 
         TaskDto actualTask = retrieveTask.byName("ouigo");
 
-        assertThat(actualTask).isEqualTo(
-                new TaskDtoBuilder()
-                        .name(expectedTask.getName())
-                        .status(expectedTask.getStatus())
+        assertThat(actualTask)
+                .isEqualTo(new TaskDtoBuilder()
+                        .name("ouigo")
+                        .status(TaskStatus.TODO)
                         .build()
         );
     }

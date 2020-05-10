@@ -32,11 +32,12 @@ public class TaskDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TaskDto taskDto = (TaskDto) o;
-        return Objects.equals(name, taskDto.name);
+        return Objects.equals(name, taskDto.name) &&
+                status == taskDto.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, status);
     }
 }

@@ -77,7 +77,7 @@
 				<configuration>
 					<excludedMethods>
 						<method>equals</method>
-						<method>hashode</method>
+						<method>hashCode</method>
 					</excludedMethods>
 					<excludedClasses>
 						<excludedClass>oui.sncf.todo.configuration.BeanTasksUsesCaseFactory</excludedClass>

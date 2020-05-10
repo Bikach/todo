@@ -5,6 +5,8 @@ import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
 import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
+import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.ChangeTaskName;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +25,11 @@ public class ChangeTaskNameTest {
         changeTaskName.of(task, "nongo");
 
         TaskDto taskDto = taskRepository.getByName("nongo").get();
-        assertThat(taskDto.getName()).isEqualTo("nongo");
+        assertThat(taskDto)
+                .isEqualTo(new TaskDtoBuilder()
+                        .name("nongo")
+                        .status(TaskStatus.TODO)
+                        .build()
+                );
     }
 }

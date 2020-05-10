@@ -30,8 +30,8 @@ public class RemoveTaskTest {
 
         Set<TaskDto> tasks = taskRepository.fetch(Optional.empty());
         TaskDto taskDto =  new TaskDtoBuilder()
-                .name(task.getName())
-                .status(task.getStatus())
+                .name("ouigo")
+                .status(TaskStatus.DONE)
                 .build();
 
         assertThat(tasks).doesNotContain(taskDto);

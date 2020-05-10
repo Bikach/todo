@@ -7,6 +7,7 @@ import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.core.port.TaskRepository;
+import oui.sncf.todo.unit.builders.TaskDtoBuilder;
 import oui.sncf.todo.usecases.ChangeTaskStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +26,12 @@ public class changeTaskStatusTest {
         changeTaskStatus.of("ouigo", TaskStatus.DONE);
 
         TaskDto actualTask = taskRepository.getByName(task.getName()).get();
-        assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.DONE);
+        assertThat(actualTask)
+                .isEqualTo(new TaskDtoBuilder()
+                .name("ouigo")
+                .status(TaskStatus.DONE)
+                .build()
+        );
     }
 
     @Test
@@ -36,8 +42,12 @@ public class changeTaskStatusTest {
         changeTaskStatus.of("ouigo", TaskStatus.TODO);
 
         TaskDto actualTask = taskRepository.getByName(task.getName()).get();
-        assertThat(actualTask.getStatus())
-                .isEqualTo(TaskStatus.TODO);
+        assertThat(actualTask)
+                .isEqualTo(new TaskDtoBuilder()
+                        .name("ouigo")
+                        .status(TaskStatus.TODO)
+                        .build()
+                );
     }
 
     @Test

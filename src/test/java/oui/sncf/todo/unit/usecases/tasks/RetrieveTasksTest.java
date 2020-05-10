@@ -21,8 +21,6 @@ public class RetrieveTasksTest {
     private static final TaskRepository taskRepository = new InMemoryTaskRepository();
     private final RetrieveTasks retrieveTasks = new RetrieveTasks(taskRepository);
 
-    private static final String NO_PREFIX = "";
-
     @BeforeAll
     static void initAll(){
         taskRepository.save(new Task("task 1"));
