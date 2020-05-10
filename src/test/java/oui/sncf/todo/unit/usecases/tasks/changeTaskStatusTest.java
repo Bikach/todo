@@ -19,14 +19,13 @@ public class changeTaskStatusTest {
 
     @Test
     void should_return_a_task_that_has_changed_to_done(){
-        Task task = new Task("ouigo");
+        Task task = new Task("ouigo", TaskStatus.TODO);
         taskRepository.save(task);
 
         changeTaskStatus.of("ouigo", TaskStatus.DONE);
 
         TaskDto actualTask = taskRepository.getByName(task.getName()).get();
-        assertThat(new Task(actualTask.getName(), actualTask.getStatus()))
-                .isEqualTo(new Task("ouigo", TaskStatus.DONE));
+        assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.DONE);
     }
 
     @Test
@@ -37,13 +36,13 @@ public class changeTaskStatusTest {
         changeTaskStatus.of("ouigo", TaskStatus.TODO);
 
         TaskDto actualTask = taskRepository.getByName(task.getName()).get();
-        assertThat(new Task(actualTask.getName(), actualTask.getStatus()))
-                .isEqualTo(new Task("ouigo", TaskStatus.TODO));
+        assertThat(actualTask.getStatus())
+                .isEqualTo(TaskStatus.TODO);
     }
 
     @Test
     void should_can_not_change_the_status_when_the_task_does_not_exist(){
-        assertThatThrownBy(() -> changeTaskStatus.of("bad name", TaskStatus.TODO))
+        assertThatThrownBy(() -> changeTaskStatus.of("name", TaskStatus.TODO))
                 .isInstanceOf(TaskDoesNotExistException.class)
                 .hasMessage("The Task doesn't exist.");
     }
