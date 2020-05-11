@@ -60,11 +60,12 @@ public class MongoDbTaskRepository implements TaskRepository {
                 .filter(taskDto -> taskDto.getStatus().equals(taskStatus))
                 .map(taskDto ->  new Task(taskDto.getName(), taskDto.getStatus()))
                 .collect(Collectors.toCollection(LinkedHashSet::new)))
-                .orElseGet(
-                        () -> mongoTemplate.findAll(TaskDto.class).stream()
-                                .map(taskDto ->  new Task(taskDto.getName(), taskDto.getStatus()))
-                                .collect(Collectors.toCollection(LinkedHashSet::new))
-                );
+                .orElseGet(this::unfilteredTasks);
+    }
 
+    private LinkedHashSet<Task> unfilteredTasks(){
+        return mongoTemplate.findAll(TaskDto.class).stream()
+                .map(taskDto ->  new Task(taskDto.getName(), taskDto.getStatus()))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }
