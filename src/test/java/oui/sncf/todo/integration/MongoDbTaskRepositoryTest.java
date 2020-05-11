@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import oui.sncf.todo.adapters.dtos.TaskDto;
+import oui.sncf.todo.adapters.dtos.TaskDtoBuilder;
 import oui.sncf.todo.adapters.mongodb.MongoDbTaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
@@ -39,16 +40,17 @@ public class MongoDbTaskRepositoryTest {
         mongoTemplate.save(new TaskDto( "task 4", TaskStatus.TODO));
         mongoTemplate.save(new TaskDto( "task 5", TaskStatus.DONE));
     }
-/*
+
     @Test
     void Should_save_a_new_task(){
         Task task = new Task("task 6");
         taskRepository.save(task);
 
         List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
-        TaskDto taskDto = new TaskDto(task.getName(), task.getStatus());
-
-        assertThat(tasksFromDB).contains(taskDto);
+        assertThat(tasksFromDB).contains(new TaskDtoBuilder()
+                .name(task.getName())
+                .status(task.getStatus())
+                .build());
     }
 
     @Test
@@ -57,9 +59,13 @@ public class MongoDbTaskRepositoryTest {
         taskRepository.remove(task);
 
         List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
-        TaskDto taskDto = new TaskDto(task.getName(), task.getStatus());
-
-        assertThat(tasksFromDB).doesNotContain(taskDto);
+        assertThat(tasksFromDB)
+                .doesNotContain(
+                        new TaskDtoBuilder()
+                                .name(task.getName())
+                                .status(task.getStatus())
+                                .build()
+                );
     }
 
     @Test
@@ -71,41 +77,38 @@ public class MongoDbTaskRepositoryTest {
 
     @Test
     void should_return_tasks_without_filter(){
-        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.empty());
+        Set<Task> tasksFromDB = taskRepository.fetch(null);
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto( "task 1", TaskStatus.TODO),
-                        new TaskDto( "task 2", TaskStatus.TODO),
-                        new TaskDto("task 3", TaskStatus.DONE),
-                        new TaskDto( "task 4", TaskStatus.TODO),
-                        new TaskDto( "task 5", TaskStatus.DONE)
+                        new Task( "task 1", TaskStatus.TODO),
+                        new Task( "task 2", TaskStatus.TODO),
+                        new Task("task 3", TaskStatus.DONE),
+                        new Task( "task 4", TaskStatus.TODO),
+                        new Task( "task 5", TaskStatus.DONE)
                 );
     }
 
     @Test
     void should_only_return_done_tasks(){
-        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.of(TaskStatus.DONE));
+        Set<Task> tasksFromDB = taskRepository.fetch(TaskStatus.DONE);
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto("task 3", TaskStatus.DONE),
-                        new TaskDto( "task 5", TaskStatus.DONE)
+                        new Task("task 3", TaskStatus.DONE),
+                        new Task( "task 5", TaskStatus.DONE)
                 );
     }
 
     @Test
     void should_only_return_in_progress_tasks(){
-        Set<TaskDto> tasksFromDB = taskRepository.fetch(Optional.of(TaskStatus.TODO));
+        Set<Task> tasksFromDB = taskRepository.fetch(TaskStatus.TODO);
 
         assertThat(tasksFromDB.toArray())
                 .containsExactly(
-                        new TaskDto("task 1", TaskStatus.TODO),
-                        new TaskDto( "task 2", TaskStatus.TODO),
-                        new TaskDto( "task 4", TaskStatus.TODO)
+                        new Task("task 1", TaskStatus.TODO),
+                        new Task( "task 2", TaskStatus.TODO),
+                        new Task( "task 4", TaskStatus.TODO)
                 );
     }
-
- */
-
 }
