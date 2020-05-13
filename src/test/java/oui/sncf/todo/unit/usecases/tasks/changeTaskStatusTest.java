@@ -5,7 +5,6 @@ import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
-import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.ChangeTaskStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,12 +20,7 @@ public class changeTaskStatusTest {
         changeTaskStatus.of(task, TaskStatus.DONE);
 
         Task actualTask = taskRepository.getByName(task.getName()).get();
-        assertThat(actualTask)
-                .isEqualTo(new TaskBuilder()
-                .name("ouigo")
-                .status(TaskStatus.DONE)
-                .build()
-        );
+        assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.DONE);
     }
 
     @Test
@@ -35,11 +29,6 @@ public class changeTaskStatusTest {
         changeTaskStatus.of(task, TaskStatus.TODO);
 
         Task actualTask = taskRepository.getByName(task.getName()).get();
-        assertThat(actualTask)
-                .isEqualTo(new TaskBuilder()
-                        .name("ouigo")
-                        .status(TaskStatus.TODO)
-                        .build()
-                );
+        assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.TODO);
     }
 }
