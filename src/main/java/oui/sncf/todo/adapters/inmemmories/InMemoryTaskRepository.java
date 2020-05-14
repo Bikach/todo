@@ -15,6 +15,7 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public void save(Task task) {
+        tasks.remove(task);
         tasks.add(task);
     }
 

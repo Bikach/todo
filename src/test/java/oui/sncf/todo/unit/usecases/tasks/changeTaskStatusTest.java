@@ -17,16 +17,21 @@ public class changeTaskStatusTest {
     @Test
     void should_return_a_task_that_has_changed_to_done(){
         Task task = new Task("ouigo", TaskStatus.TODO);
-        changeTaskStatus.of(task, TaskStatus.DONE);
+        taskRepository.save(task);
 
-        Task actualTask = taskRepository.getByName(task.getName()).get();
+        changeTaskStatus.of("ouigo", TaskStatus.DONE);
+
+
+        Task actualTask = taskRepository.getByName("ouigo").get();
         assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.DONE);
     }
 
     @Test
     void should_return_a_task_that_has_changed_to_todo(){
         Task task = new Task("ouigo", TaskStatus.DONE);
-        changeTaskStatus.of(task, TaskStatus.TODO);
+        taskRepository.save(task);
+
+        changeTaskStatus.of("ouigo", TaskStatus.TODO);
 
         Task actualTask = taskRepository.getByName(task.getName()).get();
         assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.TODO);

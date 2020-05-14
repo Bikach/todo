@@ -56,4 +56,12 @@ public class Task {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
