@@ -13,16 +13,17 @@ FAIT :
 - supprimer prefix
 - changer In_progress à to do
 - refacto remove task
-
-
-EN COURS :
 - empecher deux tache da'voir le meme nom
 
 
+EN COURS :
+- reafafo gestion des taches dans le usecase
+
+
 BLOQUE:
+- pouvoir ordonner les taches par date
 
 A FAIRE :
-- pouvoir ordonner les taches
 - toute ihm possible : http, console
 
 
