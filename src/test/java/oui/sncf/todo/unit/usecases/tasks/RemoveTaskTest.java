@@ -2,19 +2,17 @@ package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
-import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskAlwaysTodoException;
-import oui.sncf.todo.core.task.TaskDoesNotExistException;
 import oui.sncf.todo.core.task.TaskStatus;
 import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.RemoveTask;
 
-import java.util.Optional;
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RemoveTaskTest {
 
@@ -26,7 +24,7 @@ public class RemoveTaskTest {
         Task task = new Task("ouigo", TaskStatus.DONE);
         taskRepository.save(task);
 
-        removeTask.by(task);
+        removeTask.by("ouigo");
 
         Set<Task> tasks = taskRepository.fetch(null);
         assertThat(tasks)
@@ -41,7 +39,7 @@ public class RemoveTaskTest {
         Task task = new Task("ouigo", TaskStatus.TODO);
         taskRepository.save(task);
 
-        assertThatThrownBy(() -> removeTask.by(task))
+        assertThatThrownBy(() -> removeTask.by("ouigo"))
                 .isInstanceOf(TaskAlwaysTodoException.class)
                 .hasMessage("The task is already todo");
     }
