@@ -48,8 +48,8 @@ public class MongoDbTaskRepositoryTest {
 
         List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
         assertThat(tasksFromDB).contains(new TaskDtoBuilder()
-                .name(task.getName())
-                .status(task.getStatus())
+                .name("task 6")
+                .status(TaskStatus.TODO)
                 .build());
     }
 
@@ -62,8 +62,8 @@ public class MongoDbTaskRepositoryTest {
         assertThat(tasksFromDB)
                 .doesNotContain(
                         new TaskDtoBuilder()
-                                .name(task.getName())
-                                .status(task.getStatus())
+                                .name("task 4")
+                                .status(TaskStatus.TODO)
                                 .build()
                 );
     }

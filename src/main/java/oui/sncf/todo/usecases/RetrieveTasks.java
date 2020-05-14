@@ -4,7 +4,6 @@ import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
 
-import java.util.Optional;
 import java.util.Set;
 
 public class RetrieveTasks {

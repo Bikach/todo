@@ -4,13 +4,17 @@ import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
+import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.ChangeTaskName;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ChangeTaskNameTest {
 
-    private final TaskRepository taskRepository = new InMemoryTaskRepository();;
+    private final TaskRepository taskRepository = new InMemoryTaskRepository();
     private final ChangeTaskName changeTaskName = new ChangeTaskName(taskRepository);
 
 
@@ -21,7 +25,14 @@ public class ChangeTaskNameTest {
 
         changeTaskName.of("ouigo", "nongo");
 
-        Task actualTask = taskRepository.getByName("nongo").get();
-        assertThat(actualTask.getName()).isEqualTo("nongo");
+        Optional<Task> optionalActualTask = taskRepository.getByName("nongo");
+        assertThat(optionalActualTask)
+                .isPresent()
+                .isEqualTo(Optional.of(
+                        new TaskBuilder()
+                                .name("nongo")
+                                .status(TaskStatus.TODO)
+                                .build()
+                ));
     }
 }

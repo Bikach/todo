@@ -5,35 +5,53 @@ import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
 import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.ChangeTaskStatus;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class changeTaskStatusTest {
 
-    private final TaskRepository taskRepository = new InMemoryTaskRepository();;
+    public static final String NAME_TASK = "ouigo";
+    private final TaskRepository taskRepository = new InMemoryTaskRepository();
     private final ChangeTaskStatus changeTaskStatus = new ChangeTaskStatus(taskRepository);
 
     @Test
     void should_return_a_task_that_has_changed_to_done(){
-        Task task = new Task("ouigo", TaskStatus.TODO);
+        Task task = new Task(NAME_TASK, TaskStatus.TODO);
         taskRepository.save(task);
 
-        changeTaskStatus.of("ouigo", TaskStatus.DONE);
+        changeTaskStatus.of(NAME_TASK, TaskStatus.DONE);
 
 
-        Task actualTask = taskRepository.getByName("ouigo").get();
-        assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.DONE);
+        Optional<Task> optionalActualTask = taskRepository.getByName(NAME_TASK);
+        assertThat(optionalActualTask)
+                .isPresent()
+                .isEqualTo(Optional.of(
+                        new TaskBuilder()
+                                .name(NAME_TASK)
+                                .status(TaskStatus.DONE)
+                                .build()
+                ));
     }
 
     @Test
     void should_return_a_task_that_has_changed_to_todo(){
-        Task task = new Task("ouigo", TaskStatus.DONE);
+        Task task = new Task(NAME_TASK, TaskStatus.DONE);
         taskRepository.save(task);
 
-        changeTaskStatus.of("ouigo", TaskStatus.TODO);
+        changeTaskStatus.of(NAME_TASK, TaskStatus.TODO);
 
-        Task actualTask = taskRepository.getByName(task.getName()).get();
-        assertThat(actualTask.getStatus()).isEqualTo(TaskStatus.TODO);
+        Optional<Task> optionalActualTask = taskRepository.getByName(NAME_TASK);
+        assertThat(optionalActualTask)
+                .isPresent()
+                .isEqualTo(Optional.of(
+                        new TaskBuilder()
+                                .name(NAME_TASK)
+                                .status(TaskStatus.TODO)
+                                .build()
+                ));
     }
 }

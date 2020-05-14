@@ -1,7 +1,6 @@
 package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
-import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
 import oui.sncf.todo.core.port.TaskRepository;
 import oui.sncf.todo.core.task.Task;
@@ -17,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CreateTaskTest {
 
-    private final TaskRepository taskRepository = new InMemoryTaskRepository();;
+    private final TaskRepository taskRepository = new InMemoryTaskRepository();
     private final CreateTask createTask = new CreateTask(taskRepository);
 
     @Test
