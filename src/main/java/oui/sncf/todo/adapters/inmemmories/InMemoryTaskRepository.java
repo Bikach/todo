@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class InMemoryTaskRepository implements TaskRepository {
 
-    private Set<Task> tasks = new LinkedHashSet<>();
+    private final Set<Task> tasks = new LinkedHashSet<>();
 
     @Override
     public void save(Task task) {

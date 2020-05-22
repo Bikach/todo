@@ -23,7 +23,7 @@ public class MongoDbTaskRepository implements TaskRepository {
     public static final String COLLECTION_NAME = "task";
     public static final String NAME_CRITERIA = "name";
 
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
 
     public MongoDbTaskRepository(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;

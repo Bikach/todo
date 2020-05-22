@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDbFactory;
 @Configuration
 public class MongoDbConfiguration {
 
-    private Environment env;
+    private final Environment env;
 
     public MongoDbConfiguration(Environment env) {
         this.env = env;
