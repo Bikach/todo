@@ -18,5 +18,7 @@ docker
 - docker start/stop mongo-todo-app
 
 ## commandes mongo :
+- docker exec -it mongo-todo-app bash
+- mongo
 - use todoTest
 - db.createCollections("task")
