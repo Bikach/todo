@@ -11,8 +11,8 @@ public class TaskDto {
 
     @Id
     private String id;
-    private String name;
-    private TaskStatus status;
+    private final String name;
+    private final TaskStatus status;
 
     public TaskDto(String name, TaskStatus status) {
         this.name = name;
