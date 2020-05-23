@@ -28,7 +28,7 @@ public class Task {
     }
 
     public void alreadyExist() {
-        throw new TaskAlreadyExistException("The task is already exist.");
+        throw new TaskAlreadyExistException("The task already exist.");
     }
 
     public void isAlreadyTodo() {
@@ -56,5 +56,13 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(name, status);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

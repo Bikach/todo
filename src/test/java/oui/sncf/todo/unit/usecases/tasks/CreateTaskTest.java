@@ -40,6 +40,6 @@ class CreateTaskTest {
         taskRepository.save(new Task("ouigo"));
         assertThatThrownBy(() -> createTask.by("ouigo"))
                 .isInstanceOf(TaskAlreadyExistException.class)
-                .hasMessage("The task is already exist.");
+                .hasMessage("The task already exist.");
     }
 }

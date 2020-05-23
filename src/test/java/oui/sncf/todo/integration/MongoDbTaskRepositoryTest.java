@@ -35,10 +35,10 @@ public class MongoDbTaskRepositoryTest {
     void inti(){
         mongoTemplate.dropCollection(Task.class);
         mongoTemplate.save(new TaskDto("task 1", TaskStatus.TODO));
-        mongoTemplate.save(new TaskDto( "task 2", TaskStatus.TODO));
+        mongoTemplate.save(new TaskDto("task 2", TaskStatus.TODO));
         mongoTemplate.save(new TaskDto("task 3", TaskStatus.DONE));
-        mongoTemplate.save(new TaskDto( "task 4", TaskStatus.TODO));
-        mongoTemplate.save(new TaskDto( "task 5", TaskStatus.DONE));
+        mongoTemplate.save(new TaskDto("task 4", TaskStatus.TODO));
+        mongoTemplate.save(new TaskDto("task 5", TaskStatus.DONE));
     }
 
     @Test
