@@ -3,8 +3,8 @@ package oui.sncf.todo.adapters.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import oui.sncf.todo.core.port.TaskRepository;
-import oui.sncf.todo.core.task.*;
+import oui.sncf.todo.domain.port.TaskRepository;
+import oui.sncf.todo.domain.task.*;
 import oui.sncf.todo.usecases.*;
 
 import java.util.ArrayList;

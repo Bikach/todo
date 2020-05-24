@@ -1,8 +1,8 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.core.port.TaskRepository;
-import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskDoesNotExistException;
+import oui.sncf.todo.domain.port.TaskRepository;
+import oui.sncf.todo.domain.task.Task;
+import oui.sncf.todo.domain.task.TaskDoesNotExistException;
 
 public class RetrieveTask {
 

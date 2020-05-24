@@ -2,10 +2,10 @@ package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
 import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
-import oui.sncf.todo.core.port.TaskRepository;
-import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskDoesNotExistException;
-import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.domain.port.TaskRepository;
+import oui.sncf.todo.domain.task.Task;
+import oui.sncf.todo.domain.task.TaskDoesNotExistException;
+import oui.sncf.todo.domain.task.TaskStatus;
 import oui.sncf.todo.unit.builders.TaskBuilder;
 import oui.sncf.todo.usecases.RetrieveTask;
 

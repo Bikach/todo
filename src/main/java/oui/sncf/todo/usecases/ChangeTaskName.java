@@ -1,7 +1,7 @@
 package oui.sncf.todo.usecases;
 
-import oui.sncf.todo.core.port.TaskRepository;
-import oui.sncf.todo.core.task.Task;
+import oui.sncf.todo.domain.port.TaskRepository;
+import oui.sncf.todo.domain.task.Task;
 
 import java.util.Optional;
 

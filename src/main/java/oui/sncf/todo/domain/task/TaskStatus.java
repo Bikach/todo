@@ -1,4 +1,4 @@
-package oui.sncf.todo.core.task;
+package oui.sncf.todo.domain.task;
 
 public enum TaskStatus {
     TODO,

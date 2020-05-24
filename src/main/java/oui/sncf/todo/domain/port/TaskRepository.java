@@ -1,7 +1,7 @@
-package oui.sncf.todo.core.port;
+package oui.sncf.todo.domain.port;
 
-import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.domain.task.Task;
+import oui.sncf.todo.domain.task.TaskStatus;
 
 import java.util.Optional;
 import java.util.Set;

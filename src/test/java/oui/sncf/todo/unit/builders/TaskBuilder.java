@@ -1,7 +1,7 @@
 package oui.sncf.todo.unit.builders;
 
-import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.domain.task.Task;
+import oui.sncf.todo.domain.task.TaskStatus;
 
 public class TaskBuilder {
 

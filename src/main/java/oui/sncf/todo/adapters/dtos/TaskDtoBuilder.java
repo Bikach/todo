@@ -1,6 +1,6 @@
 package oui.sncf.todo.adapters.dtos;
 
-import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.domain.task.TaskStatus;
 
 public class TaskDtoBuilder {
 

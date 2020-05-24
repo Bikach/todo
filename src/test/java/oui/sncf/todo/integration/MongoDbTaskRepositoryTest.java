@@ -11,8 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import oui.sncf.todo.adapters.dtos.TaskDto;
 import oui.sncf.todo.adapters.dtos.TaskDtoBuilder;
 import oui.sncf.todo.adapters.mongodb.MongoDbTaskRepository;
-import oui.sncf.todo.core.task.Task;
-import oui.sncf.todo.core.task.TaskStatus;
+import oui.sncf.todo.domain.task.Task;
+import oui.sncf.todo.domain.task.TaskStatus;
 
 import java.util.List;
 import java.util.Optional;
