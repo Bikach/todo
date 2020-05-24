@@ -17,7 +17,7 @@ public class ChangeTaskName {
         Optional<Task> taskOptional = taskRepository.getByName(oldName);
         taskOptional.ifPresent(task -> {
             task.changeName(newName);
-            taskRepository.save(task);
+            taskRepository.update(task);
         });
     }
 }

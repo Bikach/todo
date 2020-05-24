@@ -26,13 +26,9 @@ public class ChangeTaskNameTest {
         changeTaskName.of("ouigo", "nongo");
 
         Optional<Task> optionalActualTask = taskRepository.getByName("nongo");
-        assertThat(optionalActualTask)
-                .isPresent()
-                .isEqualTo(Optional.of(
-                        new TaskBuilder()
-                                .name("nongo")
-                                .status(TaskStatus.TODO)
-                                .build()
-                ));
+        assertThat(optionalActualTask).isPresent();
+
+        Optional<Task> oldOptionalTask = taskRepository.getByName("ouigo");
+        assertThat(oldOptionalTask).isNotPresent();
     }
 }

@@ -36,6 +36,11 @@ public class MongoDbTaskRepository implements TaskRepository {
     }
 
     @Override
+    public void update(Task task) {
+
+    }
+
+    @Override
     public void remove(Task task) {
         TaskDto taskDto = new TaskDtoBuilder().name(task.getName()).status(task.getStatus()).build();
         Query query = Query.query(Criteria.where(NAME_CRITERIA).is(taskDto.getName()));

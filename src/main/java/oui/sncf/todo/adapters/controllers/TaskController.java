@@ -9,8 +9,6 @@ import oui.sncf.todo.usecases.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @RestController
 public class TaskController {
@@ -57,6 +55,20 @@ public class TaskController {
         }
     }
 
+    @PutMapping("/task/{taskName}/newStatus/{newStatus}")
+    public ResponseEntity<String> changeTaskStatus(
+            @PathVariable final String taskName,
+            @PathVariable final String newStatus
+    ){
+        try {
+            ChangeTaskStatus change = new ChangeTaskStatus(taskRepository);
+            change.of(taskName, TaskStatus.valueOf(newStatus));
+            return new ResponseEntity<>("The status has been changed", HttpStatus.OK);
+        }catch (TaskDoesNotExistException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/task/{taskName}")
     public ResponseEntity<?> retrieveByName(@PathVariable("taskName") final String taskName){
         try {
@@ -69,9 +81,10 @@ public class TaskController {
     }
 
     @GetMapping("/tasks")
-    public ResponseEntity<List<Task>> retrieveTasks(@RequestParam final String status){
+    public ResponseEntity<List<Task>> retrieveTasks(@RequestParam String status){
         RetrieveTasks retrieveTasks = new RetrieveTasks(taskRepository);
-        List<Task> tasks = new ArrayList<>(retrieveTasks.retrieve(TaskStatus.valueOf(status)));
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+        return (status.isEmpty()) ?
+                new ResponseEntity<>(new ArrayList<>(retrieveTasks.retrieve(null)), HttpStatus.OK) :
+                new ResponseEntity<>(new ArrayList<>(retrieveTasks.retrieve(TaskStatus.valueOf(status))), HttpStatus.OK);
     }
 }
