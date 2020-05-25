@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDbFactory;
 
+import java.util.Objects;
+
 @Configuration
 public class MongoDbConfiguration {
 
@@ -19,7 +21,7 @@ public class MongoDbConfiguration {
 
     @Bean
     public MongoDbFactory mongoDbFactory() {
-        MongoClientURI clientURI = new MongoClientURI(env.getProperty("spring.data.mongodb.uri"));
+        MongoClientURI clientURI = new MongoClientURI(Objects.requireNonNull(env.getProperty("spring.data.mongodb.uri")));
         return new SimpleMongoClientDbFactory(String.valueOf(clientURI));
     }
 

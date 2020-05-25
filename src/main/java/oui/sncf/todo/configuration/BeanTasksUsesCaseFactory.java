@@ -15,27 +15,32 @@ public class BeanTasksUsesCaseFactory {
     }
 
     @Bean
-    RetrieveTask retrieveTaskByName(){
+    public RetrieveTask retrieveTaskByName(){
         return new RetrieveTask(taskRepository);
     }
 
     @Bean
-    CreateTask createTaskByName(){
+    public CreateTask createTaskByName(){
         return new CreateTask(taskRepository);
     }
 
     @Bean
-    ChangeTaskStatus changeTaskStatue(){
+    public ChangeTaskName chaneTaskName(){
+        return new ChangeTaskName(taskRepository);
+    }
+
+    @Bean
+    public ChangeTaskStatus changeTaskStatue(){
         return new ChangeTaskStatus(taskRepository);
     }
 
     @Bean
-    RemoveTask removeTask(){
+    public RemoveTask removeTask(){
         return new RemoveTask(taskRepository);
     }
 
     @Bean
-    RetrieveTasks retrieveTasks(){
+    public RetrieveTasks retrieveTasks(){
         return new RetrieveTasks(taskRepository);
     }
 }
