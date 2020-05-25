@@ -8,17 +8,16 @@ java 8
 maven
 docker
 
-## récuperer image mongo :
-- docker pull mongo
+## récuperer image mysql :
+- docker pull mysql
 
 ## créer et lancer un container :
-- docker run -d -p 27017-27019:27017-27019 --name mongo-todo-app mongo
+- docker run --detach --name=mysql-todo-app --env="MYSQL_ROOT_PASSWORD=mdp" mysql
 
 ## lancer et arreter le container :
-- docker start/stop mongo-todo-app
+- docker start/stop mysql-todo-app
 
-## commandes mongo :
-- docker exec -it mongo-todo-app bash
-- mongo
+## commandes MYSQL :
+- docker exec -it mysql-todo-app bash
+- mysql -p (mdp)
 - use todoTest
-- db.createCollections("task")
