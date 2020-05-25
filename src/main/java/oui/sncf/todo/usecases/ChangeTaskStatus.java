@@ -18,7 +18,7 @@ public class ChangeTaskStatus {
         Optional<Task> taskOptional = taskRepository.getByName(taskName);
         taskOptional.ifPresent(task -> {
             task.changeStatus(newStatus);
-            taskRepository.update(task);
+            taskRepository.save(task);
         });
     }
 }

@@ -32,12 +32,9 @@ public class MongoDbTaskRepository implements TaskRepository {
     @Override
     public void save(Task task) {
         TaskDto taskDto = new TaskDtoBuilder().name(task.getName()).status(task.getStatus()).build();
+        Query query = Query.query(Criteria.where(NAME_CRITERIA).is(taskDto.getName()));
+        mongoTemplate.remove(query, TaskDto.class);
         mongoTemplate.save(taskDto, COLLECTION_NAME);
-    }
-
-    @Override
-    public void update(Task task) {
-
     }
 
     @Override

@@ -82,6 +82,7 @@
 					<excludedClasses>
 						<excludedClass>oui.sncf.todo.configuration.BeanTasksUsesCaseFactory</excludedClass>
 						<excludedClass>oui.sncf.todo.configuration.MongoDbConfiguration</excludedClass>
+						<excludedClass>oui.sncf.todo.adapters.controllers</excludedClass>
 					</excludedClasses>
 				</configuration>
 			</plugin>

@@ -40,13 +40,4 @@ public class TaskDto {
     public int hashCode() {
         return Objects.hash(name, status);
     }
-
-    @Override
-    public String toString() {
-        return "TaskDto{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                '}';
-    }
 }
