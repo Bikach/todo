@@ -1,7 +1,7 @@
 package oui.sncf.todo.unit.usecases.tasks;
 
 import org.junit.jupiter.api.Test;
-import oui.sncf.todo.adapters.inmemmories.InMemoryTaskRepository;
+import oui.sncf.todo.adapters.driven.inmemmories.InMemoryTaskRepository;
 import oui.sncf.todo.domain.port.TaskRepository;
 import oui.sncf.todo.domain.task.Task;
 import oui.sncf.todo.domain.task.TaskAlreadyExistException;

@@ -1,12 +1,12 @@
-package oui.sncf.todo.adapters.mongodb;
+package oui.sncf.todo.adapters.driven.mongodb;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Repository;
-import oui.sncf.todo.adapters.dtos.TaskDto;
-import oui.sncf.todo.adapters.dtos.TaskDtoBuilder;
+import oui.sncf.todo.adapters.driven.dtos.TaskDto;
+import oui.sncf.todo.adapters.driven.dtos.TaskDtoBuilder;
 import oui.sncf.todo.domain.port.TaskRepository;
 import oui.sncf.todo.domain.task.Task;
 import oui.sncf.todo.domain.task.TaskStatus;
@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
-@EnableMongoRepositories(basePackages = "oui.sncf.todo.adapters.mongodb")
+@EnableMongoRepositories(basePackages = "oui.sncf.todo.adapters.driven.mongodb")
 public class MongoDbTaskRepository implements TaskRepository {
 
     public static final String COLLECTION_NAME = "task";

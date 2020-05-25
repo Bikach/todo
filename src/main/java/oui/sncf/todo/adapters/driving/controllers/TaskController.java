@@ -1,4 +1,4 @@
-package oui.sncf.todo.adapters.controllers;
+package oui.sncf.todo.adapters.driving.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

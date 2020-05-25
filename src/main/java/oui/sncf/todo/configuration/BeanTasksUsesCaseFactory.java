@@ -2,7 +2,7 @@ package oui.sncf.todo.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import oui.sncf.todo.adapters.mongodb.MongoDbTaskRepository;
+import oui.sncf.todo.adapters.driven.mongodb.MongoDbTaskRepository;
 import oui.sncf.todo.usecases.*;
 
 @Configuration

@@ -1,4 +1,4 @@
-package oui.sncf.todo.adapters.inmemmories;
+package oui.sncf.todo.adapters.driven.inmemmories;
 
 import oui.sncf.todo.domain.port.TaskRepository;
 import oui.sncf.todo.domain.task.Task;

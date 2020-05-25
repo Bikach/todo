@@ -1,4 +1,4 @@
-package oui.sncf.todo.adapters.dtos;
+package oui.sncf.todo.adapters.driven.dtos;
 
 import oui.sncf.todo.domain.task.TaskStatus;
 

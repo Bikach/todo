@@ -8,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import oui.sncf.todo.adapters.dtos.TaskDto;
-import oui.sncf.todo.adapters.dtos.TaskDtoBuilder;
-import oui.sncf.todo.adapters.mongodb.MongoDbTaskRepository;
+import oui.sncf.todo.adapters.driven.dtos.TaskDto;
+import oui.sncf.todo.adapters.driven.dtos.TaskDtoBuilder;
+import oui.sncf.todo.adapters.driven.mongodb.MongoDbTaskRepository;
 import oui.sncf.todo.domain.task.Task;
 import oui.sncf.todo.domain.task.TaskStatus;
 

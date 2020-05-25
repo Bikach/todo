@@ -1,4 +1,4 @@
-package oui.sncf.todo.adapters.dtos;
+package oui.sncf.todo.adapters.driven.dtos;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
