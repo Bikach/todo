@@ -1,15 +1,6 @@
 package oui.sncf.todo.configuration;
 
-import com.mongodb.MongoClientURI;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.MongoDbFactory;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoClientDbFactory;
-
-import java.util.Objects;
-
+/*
 @Configuration
 public class MongoDbConfiguration {
 
@@ -30,3 +21,5 @@ public class MongoDbConfiguration {
         return new MongoTemplate(mongoDbFactory());
     }
 }
+
+ */
