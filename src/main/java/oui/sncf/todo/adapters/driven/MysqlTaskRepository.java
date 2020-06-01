@@ -1,5 +1,6 @@
 package oui.sncf.todo.adapters.driven;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import oui.sncf.todo.adapters.driven.dtos.TaskDto;
@@ -35,15 +36,20 @@ public class MysqlTaskRepository  implements TaskRepository {
 
     @Override
     public Optional<Task> getByName(String name) {
-        TaskDto taskDto = jdbcTemplate.queryForObject(
-                "select * from taskDto where name = ?",
-                new Object[]{name},
-                (rs, rowNum) -> new TaskDto(
-                        rs.getString("name"),
-                        TaskStatus.valueOf(rs.getString("status"))
-                )
-        );
-        return Optional.of(new Task(taskDto.getName(), taskDto.getStatus()));
+        Optional<Task> optionalTask;
+        try{
+            optionalTask = jdbcTemplate.queryForObject(
+                    "select * from taskDto where name = ?",
+                    new Object[]{name},
+                    (rs, rowNum) -> Optional.of(new Task(
+                            rs.getString("name"),
+                            TaskStatus.valueOf(rs.getString("status"))
+                    ))
+            );
+        }catch (EmptyResultDataAccessException e){
+            optionalTask = Optional.empty();
+        }
+        return optionalTask;
     }
 
     @Override

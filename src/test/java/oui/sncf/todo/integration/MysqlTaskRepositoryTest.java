@@ -1,7 +1,6 @@
 package oui.sncf.todo.integration;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,13 +85,18 @@ public class MysqlTaskRepositoryTest {
     }
 
     @Test
-    void should_return_a_task_using_his_name(){
-        Optional<Task> task = taskRepository.getByName("task 2");
-        System.out.println(task.get()+"==========");
-        assertThat(task).isEqualTo(Optional.of(
+    void should_return_a_task_using_his_name() {
+        Optional<Task> optionalTask = taskRepository.getByName("task 2");
+        assertThat(optionalTask).isEqualTo(Optional.of(
                 new Task("task 2", TaskStatus.TODO)
                 )
         );
+    }
+
+    @Test
+    void should_return_a_optional_task_empty_when_task_name_does_not_exist(){
+        Optional<Task> optionalTask = taskRepository.getByName("bad name");
+        assertThat(optionalTask).isEmpty();
     }
 
     @Test
