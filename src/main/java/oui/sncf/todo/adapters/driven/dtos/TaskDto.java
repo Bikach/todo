@@ -10,9 +10,6 @@ public class TaskDto {
     private String name;
     private TaskStatus status;
 
-    public TaskDto() {
-    }
-
     public TaskDto(String name, TaskStatus status) {
         this.name = name;
         this.status = status;
@@ -38,14 +35,5 @@ public class TaskDto {
     @Override
     public int hashCode() {
         return Objects.hash(name, status);
-    }
-
-    @Override
-    public String toString() {
-        return "TaskDto{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                '}';
     }
 }

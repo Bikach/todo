@@ -20,4 +20,11 @@ docker
 ## commandes MYSQL :
 - docker exec -it mysql-todo-app bash
 - mysql -p (mdp)
-- use todoTest
+- CREATE DATABASE todo/todoTest
+- use todo/todoTest
+- CREATE TABLE taskDto( 
+    task_id int NOT NULL AUTO_INCREMENT, 
+    name varchar(100) NOT NULL, 
+    status varchar(4) NOT NULL, 
+    primary key (task_id) 
+);
