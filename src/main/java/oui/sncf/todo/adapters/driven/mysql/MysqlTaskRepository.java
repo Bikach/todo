@@ -1,5 +1,5 @@
-package oui.sncf.todo.adapters.driven;
-
+package oui.sncf.todo.adapters.driven.mysql;
+/*
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -74,3 +74,4 @@ public class MysqlTaskRepository  implements TaskRepository {
         ));
     }
 }
+*/

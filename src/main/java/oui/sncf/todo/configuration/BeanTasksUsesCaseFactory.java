@@ -2,15 +2,16 @@ package oui.sncf.todo.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import oui.sncf.todo.adapters.driven.MysqlTaskRepository;
+import oui.sncf.todo.adapters.driven.mongodb.MongoDbTaskRepository;
 import oui.sncf.todo.usecases.*;
 
 @Configuration
 public class BeanTasksUsesCaseFactory {
 
-    private final MysqlTaskRepository taskRepository;
+    private final MongoDbTaskRepository taskRepository;
+    //private final MysqlTaskRepository taskRepository;
 
-    public BeanTasksUsesCaseFactory(MysqlTaskRepository taskRepository) {
+    public BeanTasksUsesCaseFactory(MongoDbTaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 

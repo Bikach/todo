@@ -1,21 +1,39 @@
 package oui.sncf.todo.integration;
 
-//import oui.sncf.todo.adapters.driven.mongodb.MongoDbTaskRepository;
-/*
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import oui.sncf.todo.adapters.driven.dtos.TaskDto;
+import oui.sncf.todo.adapters.driven.dtos.TaskDtoBuilder;
+import oui.sncf.todo.adapters.driven.mongodb.MongoDbTaskRepository;
+import oui.sncf.todo.domain.task.Task;
+import oui.sncf.todo.domain.task.TaskStatus;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 public class MongoDbTaskRepositoryTest {
 
     @Autowired
-    private  MongoTemplate mongoTemplate;
+    private MongoTemplate mongoTemplate;
 
     @Autowired
     private  MongoDbTaskRepository taskRepository;
 
     @BeforeEach
     void inti(){
-        mongoTemplate.dropCollection(Task.class);
+        mongoTemplate.dropCollection(TaskDto.class);
         mongoTemplate.save(new TaskDto("task 1", TaskStatus.TODO));
         mongoTemplate.save(new TaskDto("task 2", TaskStatus.TODO));
         mongoTemplate.save(new TaskDto("task 3", TaskStatus.DONE));
@@ -94,4 +112,3 @@ public class MongoDbTaskRepositoryTest {
                 );
     }
 }
-*/
