@@ -1,13 +1,11 @@
 package oui.sncf.todo.integration;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -17,8 +15,9 @@ import oui.sncf.todo.adapters.driven.dtos.TaskDtoBuilder;
 import oui.sncf.todo.domain.task.Task;
 import oui.sncf.todo.domain.task.TaskStatus;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,8 +45,6 @@ public class MysqlTaskRepositoryTest {
         jdbcTemplate.update(SQL_INSERT_TASK, "task 5", TaskStatus.DONE.toString());
     }
 
-
-
     @Test
     void Should_save_a_new_task() {
         Task task = new Task("task 6");
@@ -74,7 +71,13 @@ public class MysqlTaskRepositoryTest {
         Task task = new Task("task 4");
         taskRepository.remove(task);
 
-        List<TaskDto> tasks = jdbcTemplate.queryForList("select * from taskDto", TaskDto.class);
+        List<TaskDto> tasks = jdbcTemplate.query(
+                "select * from taskDto",
+                (rs, rowNum) -> new TaskDto(
+                                rs.getString("name"),
+                                TaskStatus.valueOf(rs.getString("status"))
+                )
+        );
 
         assertThat(tasks).doesNotContain(new TaskDtoBuilder()
                 .name("task 4")
@@ -82,4 +85,50 @@ public class MysqlTaskRepositoryTest {
                 .build());
     }
 
+    @Test
+    void should_return_a_task_using_his_name(){
+        Optional<Task> task = taskRepository.getByName("task 2");
+        System.out.println(task.get()+"==========");
+        assertThat(task).isEqualTo(Optional.of(
+                new Task("task 2", TaskStatus.TODO)
+                )
+        );
+    }
+
+    @Test
+    void should_return_tasks_without_filter(){
+        Set<Task> tasksFromDB = taskRepository.fetch(null);
+
+        assertThat(tasksFromDB.toArray())
+                .containsExactly(
+                        new Task( "task 1", TaskStatus.TODO),
+                        new Task( "task 2", TaskStatus.TODO),
+                        new Task("task 3", TaskStatus.TODO),
+                        new Task( "task 4", TaskStatus.DONE),
+                        new Task( "task 5", TaskStatus.DONE)
+                );
+    }
+
+    @Test
+    void should_only_return_done_tasks(){
+        Set<Task> tasksFromDB = taskRepository.fetch(TaskStatus.DONE);
+
+        assertThat(tasksFromDB.toArray())
+                .containsExactly(
+                        new Task("task 4", TaskStatus.DONE),
+                        new Task( "task 5", TaskStatus.DONE)
+                );
+    }
+
+    @Test
+    void should_only_return_in_progress_tasks(){
+        Set<Task> tasksFromDB = taskRepository.fetch(TaskStatus.TODO);
+
+        assertThat(tasksFromDB.toArray())
+                .containsExactly(
+                        new Task("task 1", TaskStatus.TODO),
+                        new Task( "task 2", TaskStatus.TODO),
+                        new Task( "task 3", TaskStatus.TODO)
+                );
+    }
 }

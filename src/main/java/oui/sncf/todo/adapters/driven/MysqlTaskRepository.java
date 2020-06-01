@@ -8,8 +8,10 @@ import oui.sncf.todo.domain.port.TaskRepository;
 import oui.sncf.todo.domain.task.Task;
 import oui.sncf.todo.domain.task.TaskStatus;
 
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Repository
 public class MysqlTaskRepository  implements TaskRepository {
@@ -33,11 +35,36 @@ public class MysqlTaskRepository  implements TaskRepository {
 
     @Override
     public Optional<Task> getByName(String name) {
-        return Optional.empty();
+        TaskDto taskDto = jdbcTemplate.queryForObject(
+                "select * from taskDto where name = ?",
+                new Object[]{name},
+                (rs, rowNum) -> new TaskDto(
+                        rs.getString("name"),
+                        TaskStatus.valueOf(rs.getString("status"))
+                )
+        );
+        return Optional.of(new Task(taskDto.getName(), taskDto.getStatus()));
     }
 
     @Override
     public Set<Task> fetch(TaskStatus status) {
-        return null;
+        Optional<TaskStatus> optionalStatus = Optional.ofNullable(status);
+        return  optionalStatus.map(taskStatus -> unfilteredTasks()
+                .stream()
+                .filter(taskDto -> taskDto.getStatus().equals(taskStatus))
+                .map(taskDto ->  new Task(taskDto.getName(), taskDto.getStatus()))
+                .collect(Collectors.toCollection(LinkedHashSet::new)))
+                .orElseGet(this::unfilteredTasks);
+
+    }
+
+    private LinkedHashSet<Task> unfilteredTasks(){
+        return new LinkedHashSet<>(jdbcTemplate.query(
+                "select * from taskDto",
+                (rs, rowNum) -> new Task(
+                        rs.getString("name"),
+                        TaskStatus.valueOf(rs.getString("status"))
+                )
+        ));
     }
 }
