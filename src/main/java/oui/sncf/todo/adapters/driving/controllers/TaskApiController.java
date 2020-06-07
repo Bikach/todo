@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class TaskController {
+public class TaskApiController {
 
     private final BeanTasksUsesCaseFactory beanTasksUsesCaseFactory;
 
-    public TaskController(BeanTasksUsesCaseFactory beanTasksUsesCaseFactory) {
+    public TaskApiController(BeanTasksUsesCaseFactory beanTasksUsesCaseFactory) {
         this.beanTasksUsesCaseFactory = beanTasksUsesCaseFactory;
     }
 
