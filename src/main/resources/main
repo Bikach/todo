@@ -1,16 +1,24 @@
-package oui.sncf.todo.adapters.driving.console;
+	@Autowired
+	private static RetrieveTasks retrieveTasks;
 
-import oui.sncf.todo.domain.port.DisplayTasks;
-import oui.sncf.todo.domain.task.Task;
-import oui.sncf.todo.domain.task.TaskStatus;
+	public TodoApplication(RetrieveTasks retrieveTasks) {
+		TodoApplication.retrieveTasks = retrieveTasks;
+	}
 
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.Set;
+	public static void main(String[] args) {
+		SpringApplication.run(TodoApplication.class, args);
 
-public class TaskConsoleCommands {
+		TaskConsoleCommands consoleCommands = new TaskConsoleCommands(retrieveTasks);
 
-    private final DisplayTasks displayTasks;
+		consoleCommands.display();
+	}
+
+	interface
+	    Set<Task> retrieve(TaskStatus status);
+
+
+TaskConsoleCommands{
+ private final DisplayTasks displayTasks;
 
     public TaskConsoleCommands(DisplayTasks displayTasks) {
         this.displayTasks = displayTasks;
