@@ -7,5 +7,4 @@ import java.util.Set;
 
 public interface DisplayTasks {
     Set<Task> retrieve(TaskStatus status);
-
 }
