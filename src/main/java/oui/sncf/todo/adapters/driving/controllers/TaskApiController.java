@@ -77,8 +77,8 @@ public class TaskApiController {
 
     @GetMapping("/tasks")
     public ResponseEntity<List<Task>> retrieveTasks(@RequestParam String status) {
-        List<Task> taks = getTasks(status);
-        return new ResponseEntity<>(taks, HttpStatus.OK);
+        List<Task> tasks = getTasks(status);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
     private ArrayList<Task> getTasks(String status){
