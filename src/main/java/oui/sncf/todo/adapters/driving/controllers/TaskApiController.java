@@ -1,5 +1,6 @@
 package oui.sncf.todo.adapters.driving.controllers;
 
+import apple.laf.JRSUIConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -75,9 +76,15 @@ public class TaskApiController {
     }
 
     @GetMapping("/tasks")
-    public ResponseEntity<List<Task>> retrieveTasks(@RequestParam String status){
-        return (status.isEmpty()) ?
-                new ResponseEntity<>(new ArrayList<>(beanTasksUsesCaseFactory.retrieveTasks().retrieve(null)), HttpStatus.OK) :
-                new ResponseEntity<>(new ArrayList<>(beanTasksUsesCaseFactory.retrieveTasks().retrieve(TaskStatus.valueOf(status))), HttpStatus.OK);
+    public ResponseEntity<List<Task>> retrieveTasks(@RequestParam String status) {
+        List<Task> taks = getTasks(status);
+        return new ResponseEntity<>(taks, HttpStatus.OK);
     }
+
+    private ArrayList<Task> getTasks(String status){
+        if (status.isEmpty())
+            return new ArrayList<>(beanTasksUsesCaseFactory.retrieveTasks().retrieve(null));
+         return new ArrayList<>(beanTasksUsesCaseFactory.retrieveTasks().retrieve(TaskStatus.valueOf(status.toUpperCase())));
+    }
+
 }
