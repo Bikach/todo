@@ -9,7 +9,6 @@ import oui.sncf.todo.usecases.*;
 public class BeanTasksUsesCaseFactory {
 
     private final MongoDbTaskRepository taskRepository;
-    //private final MysqlTaskRepository taskRepository;
 
     public BeanTasksUsesCaseFactory(MongoDbTaskRepository taskRepository) {
         this.taskRepository = taskRepository;
