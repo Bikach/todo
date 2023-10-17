@@ -8,11 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import oui.sncf.todo.adapters.driven.dtos.TaskDto;
-import oui.sncf.todo.adapters.driven.dtos.TaskDtoBuilder;
-import oui.sncf.todo.adapters.driven.mongodb.MongoDbTaskRepository;
-import oui.sncf.todo.domain.task.Task;
-import oui.sncf.todo.domain.task.TaskStatus;
+import oui.sncf.todo.core.domain.task.Task;
+import oui.sncf.todo.core.domain.task.TaskStatus;
+import oui.sncf.todo.infrastructure.mongoDB.document.TaskDocument;
+import oui.sncf.todo.infrastructure.mongoDB.document.TaskDocumentBuilder;
+import oui.sncf.todo.infrastructure.mongoDB.mongodb.MongoDbTaskRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,16 +29,16 @@ public class MongoDbTaskRepositoryTest {
     private  MongoTemplate mongoTemplate;
 
     @Autowired
-    private  MongoDbTaskRepository taskRepository;
+    private MongoDbTaskRepository taskRepository;
 
     @BeforeEach
     void inti(){
         mongoTemplate.dropCollection(Task.class);
-        mongoTemplate.save(new TaskDto("task 1", TaskStatus.TODO));
-        mongoTemplate.save(new TaskDto("task 2", TaskStatus.TODO));
-        mongoTemplate.save(new TaskDto("task 3", TaskStatus.DONE));
-        mongoTemplate.save(new TaskDto("task 4", TaskStatus.TODO));
-        mongoTemplate.save(new TaskDto("task 5", TaskStatus.DONE));
+        mongoTemplate.save(new TaskDocument("task 1", TaskStatus.TODO));
+        mongoTemplate.save(new TaskDocument("task 2", TaskStatus.TODO));
+        mongoTemplate.save(new TaskDocument("task 3", TaskStatus.DONE));
+        mongoTemplate.save(new TaskDocument("task 4", TaskStatus.TODO));
+        mongoTemplate.save(new TaskDocument("task 5", TaskStatus.DONE));
     }
 
     @Test
@@ -46,8 +46,8 @@ public class MongoDbTaskRepositoryTest {
         Task task = new Task("task 6");
         taskRepository.save(task);
 
-        List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
-        assertThat(tasksFromDB).contains(new TaskDtoBuilder()
+        List<TaskDocument> tasksFromDB =  mongoTemplate.findAll(TaskDocument.class);
+        assertThat(tasksFromDB).contains(new TaskDocumentBuilder()
                 .name("task 6")
                 .status(TaskStatus.TODO)
                 .build());
@@ -58,10 +58,10 @@ public class MongoDbTaskRepositoryTest {
         Task task = new Task("task 4");
         taskRepository.remove(task);
 
-        List<TaskDto> tasksFromDB =  mongoTemplate.findAll(TaskDto.class);
+        List<TaskDocument> tasksFromDB =  mongoTemplate.findAll(TaskDocument.class);
         assertThat(tasksFromDB)
                 .doesNotContain(
-                        new TaskDtoBuilder()
+                        new TaskDocumentBuilder()
                                 .name("task 4")
                                 .status(TaskStatus.TODO)
                                 .build()
